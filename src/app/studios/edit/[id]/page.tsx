@@ -43,6 +43,29 @@ const PRESET_AMENITIES = [
   "Commercial HVAC Climate Control",
 ];
 
+const SAMPLE_IMAGE_PRESETS = [
+  {
+    label: "Daylight Cyc",
+    url: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    label: "Cinema Stage",
+    url: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    label: "Podcast Lounge",
+    url: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    label: "Music Suite",
+    url: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    label: "Ceramics Loft",
+    url: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=80",
+  },
+];
+
 export default function EditStudioPage() {
   const params = useParams();
   const id = params?.id as string;
@@ -306,6 +329,21 @@ export default function EditStudioPage() {
                 className="w-full pl-10 pr-3.5 py-2.5 text-sm rounded-xl border border-studio-200 dark:border-studio-800 bg-studio-50 dark:bg-studio-950 text-foreground focus:outline-none focus:ring-2 focus:ring-amber-500/30"
                 required
               />
+            </div>
+
+            {/* Quick Sample Presets */}
+            <div className="flex flex-wrap items-center gap-1.5 pt-1">
+              <span className="text-[11px] text-studio-400 font-semibold mr-1">Quick Presets:</span>
+              {SAMPLE_IMAGE_PRESETS.map((preset) => (
+                <button
+                  type="button"
+                  key={preset.label}
+                  onClick={() => setImage(preset.url)}
+                  className="px-2.5 py-1 text-[11px] rounded-lg border border-studio-200 dark:border-studio-800 bg-studio-100 dark:bg-studio-800 text-studio-700 dark:text-studio-300 hover:border-amber-500/50 hover:text-amber-500 transition-colors"
+                >
+                  {preset.label}
+                </button>
+              ))}
             </div>
 
             {image && (

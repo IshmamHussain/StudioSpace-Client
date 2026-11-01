@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Compass, PlusCircle, Sparkles } from "lucide-react";
 
 interface SlideData {
@@ -58,7 +59,7 @@ export function HeroSlider() {
     if (isPaused) return;
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
-    }, 6000);
+    }, 6500);
     return () => clearInterval(interval);
   }, [isPaused]);
 
@@ -66,88 +67,99 @@ export function HeroSlider() {
 
   return (
     <div
-      className="relative w-full h-[540px] sm:h-[600px] lg:h-[680px] overflow-hidden bg-studio-950 text-white select-none"
+      className="relative w-full h-[560px] sm:h-[620px] lg:h-[700px] overflow-hidden bg-studio-950 text-white select-none"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Background Images with Crossfade */}
+      {/* Background Images with Crossfade and Zoom */}
       {SLIDES.map((s, index) => (
         <div
           key={s.id}
           className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            index === currentSlide ? "opacity-100 z-10 scale-100" : "opacity-0 z-0 scale-105"
-          } transition-transform duration-10000`}
+            index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+          }`}
         >
           <img
             src={s.image}
             alt={s.headline}
-            className="w-full h-full object-cover"
+            className={`w-full h-full object-cover transition-transform duration-[7000ms] ease-out ${
+              index === currentSlide ? "scale-105" : "scale-100"
+            }`}
           />
-          {/* Deep Cinematic Overlay & Spotlight Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-r from-studio-950 via-studio-950/80 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-studio-950 via-transparent to-black/40" />
+          {/* Deep Cinematic Overlay & Spotlight Radial Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-r from-studio-950 via-studio-950/85 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-studio-950 via-transparent to-black/50" />
         </div>
       ))}
 
-      {/* Hero Content Overlay */}
+      {/* Hero Content Overlay with AnimatePresence */}
       <div className="relative z-20 max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
-        <div className="max-w-2xl space-y-6">
-          {/* Category / Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-amber-500/40 bg-amber-500/10 backdrop-blur-md text-amber-400 text-xs font-semibold tracking-wide uppercase">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>{slide.badge}</span>
-          </div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="max-w-2xl space-y-6"
+          >
+            {/* Category / Badge */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-amber-500/40 bg-amber-500/15 backdrop-blur-md text-amber-400 text-xs font-bold tracking-wide uppercase shadow-sm">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>{slide.badge}</span>
+            </div>
 
-          {/* Headline */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-tight leading-[1.1] text-white">
-            {slide.headline}
-          </h1>
+            {/* Headline */}
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-tight leading-[1.08] text-white drop-shadow-sm">
+              {slide.headline}
+            </h1>
 
-          {/* Subtext */}
-          <p className="text-base sm:text-lg text-studio-300 leading-relaxed max-w-xl">
-            {slide.subtext}
-          </p>
+            {/* Subtext */}
+            <p className="text-base sm:text-lg text-studio-200/90 leading-relaxed max-w-xl">
+              {slide.subtext}
+            </p>
 
-          {/* Specification Chips */}
-          <div className="hidden sm:flex items-center gap-2 pt-1">
-            {slide.specs.map((spec, i) => (
-              <span
-                key={i}
-                className="px-2.5 py-1 text-xs font-medium rounded-lg bg-white/10 backdrop-blur-md border border-white/10 text-studio-200"
+            {/* Specification Chips */}
+            <div className="hidden sm:flex items-center gap-2 pt-1">
+              {slide.specs.map((spec, i) => (
+                <span
+                  key={i}
+                  className="px-3 py-1 text-xs font-semibold rounded-lg bg-white/10 backdrop-blur-md border border-white/15 text-studio-100 shadow-sm"
+                >
+                  ✓ {spec}
+                </span>
+              ))}
+            </div>
+
+            {/* Primary CTA Buttons (Linking to /studios and /add-studio) */}
+            <div className="flex flex-wrap items-center gap-3.5 pt-4">
+              <Link
+                href="/studios"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-studio-950 font-bold text-sm transition-all duration-200 hover:shadow-glow hover:scale-[1.02]"
               >
-                ✓ {spec}
-              </span>
-            ))}
-          </div>
+                <Compass className="w-4 h-4" />
+                <span>Explore Studios</span>
+              </Link>
 
-          {/* Primary CTA Buttons (Linking to /studios and /add-studio) */}
-          <div className="flex flex-wrap items-center gap-3 pt-4">
-            <Link
-              href="/studios"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-studio-950 font-bold text-sm transition-all duration-200 hover:shadow-glow"
-            >
-              <Compass className="w-4 h-4" />
-              <span>Explore Studios</span>
-            </Link>
-
-            <Link
-              href="/add-studio"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 backdrop-blur-md text-white font-semibold text-sm transition-all duration-200"
-            >
-              <PlusCircle className="w-4 h-4 text-amber-400" />
-              <span>Host Your Space</span>
-            </Link>
-          </div>
-        </div>
+              <Link
+                href="/add-studio"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-white/25 hover:border-white/50 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-semibold text-sm transition-all duration-200 hover:scale-[1.02]"
+              >
+                <PlusCircle className="w-4 h-4 text-amber-400" />
+                <span>Host Your Space</span>
+              </Link>
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Navigation Controls: Arrows */}
-      <div className="absolute z-20 bottom-8 right-6 sm:right-12 flex items-center gap-2">
+      <div className="absolute z-20 bottom-8 right-6 sm:right-12 flex items-center gap-2.5">
         <button
           onClick={() =>
             setCurrentSlide((prev) => (prev - 1 + SLIDES.length) % SLIDES.length)
           }
-          className="p-3 rounded-full border border-white/20 bg-black/40 hover:bg-black/70 backdrop-blur-md text-white transition-all focus:outline-none"
+          className="p-3 rounded-full border border-white/20 bg-black/40 hover:bg-black/70 backdrop-blur-md text-white transition-all hover:scale-105 focus:outline-none"
           aria-label="Previous slide"
         >
           <ChevronLeft className="w-5 h-5" />
@@ -155,23 +167,23 @@ export function HeroSlider() {
 
         <button
           onClick={() => setCurrentSlide((prev) => (prev + 1) % SLIDES.length)}
-          className="p-3 rounded-full border border-white/20 bg-black/40 hover:bg-black/70 backdrop-blur-md text-white transition-all focus:outline-none"
+          className="p-3 rounded-full border border-white/20 bg-black/40 hover:bg-black/70 backdrop-blur-md text-white transition-all hover:scale-105 focus:outline-none"
           aria-label="Next slide"
         >
           <ChevronRight className="w-5 h-5" />
         </button>
       </div>
 
-      {/* Slide Pagination Dots / Progress Bars */}
-      <div className="absolute z-20 bottom-8 left-4 sm:left-8 flex items-center gap-2">
+      {/* Slide Pagination Progress Bars */}
+      <div className="absolute z-20 bottom-8 left-4 sm:left-8 flex items-center gap-2.5">
         {SLIDES.map((_, idx) => (
           <button
             key={idx}
             onClick={() => setCurrentSlide(idx)}
-            className={`h-1.5 transition-all duration-300 rounded-full ${
+            className={`h-1.5 transition-all duration-500 rounded-full ${
               idx === currentSlide
-                ? "w-8 bg-amber-400"
-                : "w-2 bg-white/30 hover:bg-white/60"
+                ? "w-10 bg-amber-400 shadow-glow"
+                : "w-2.5 bg-white/30 hover:bg-white/60"
             }`}
             aria-label={`Go to slide ${idx + 1}`}
           />
@@ -180,4 +192,3 @@ export function HeroSlider() {
     </div>
   );
 }
-

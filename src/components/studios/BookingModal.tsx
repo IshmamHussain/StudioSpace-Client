@@ -7,6 +7,7 @@ import { useAuth } from "../../context/AuthContext";
 import { api } from "../../lib/api";
 import { calculateBookingPrice, formatCurrency } from "../../lib/utils";
 import { toast } from "sonner";
+import confetti from "canvas-confetti";
 import {
   X,
   Calendar,
@@ -90,6 +91,11 @@ export function BookingModal({ studio, isOpen, onClose }: BookingModalProps) {
       });
 
       if (res.success) {
+        confetti({
+          particleCount: 80,
+          spread: 70,
+          origin: { y: 0.6 },
+        });
         toast.success(res.message || "Studio reservation submitted! Status: Pending host review.");
         onClose();
         router.push("/my-bookings");
