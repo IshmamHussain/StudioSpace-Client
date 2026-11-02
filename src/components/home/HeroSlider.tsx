@@ -45,7 +45,7 @@ const SLIDES: SlideData[] = [
     subtext:
       "Step into world-class recording suites equipped with Solid State Logic (SSL) consoles, Neumann vintage microphones, and certified Dolby Atmos spatial monitoring.",
     image:
-      "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1920&q=85",
+      "https://images.unsplash.com/photo-1598653222000-6b7b7a552625?auto=format&fit=crop&w=1920&q=85",
     category: "Music Suite",
     specs: ["SSL AWS 948 Console", "Neumann U87 Vintage", "7.1.4 Dolby Atmos"],
   },

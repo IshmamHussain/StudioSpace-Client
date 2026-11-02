@@ -1,6 +1,13 @@
 import React from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Film, ShieldCheck, Heart, Award, Users, Compass } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "About Our Platform",
+  description:
+    "Learn about StudioSpace's mission to connect filmmakers, photographers, and audio engineers with verified creative production spaces and soundstages.",
+};
 
 export default function AboutPage() {
   return (
@@ -52,32 +59,26 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Global Creative Network Stats */}
-        <div className="p-8 sm:p-12 rounded-3xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900 text-center space-y-6">
-          <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-foreground">
-            Trusted by Creators Across the Globe
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-4">
-            <div>
-              <p className="text-3xl sm:text-4xl font-extrabold text-amber-500">180+</p>
-              <p className="text-xs text-studio-500 mt-1">Verified Studios</p>
-            </div>
-            <div>
-              <p className="text-3xl sm:text-4xl font-extrabold text-amber-500">12,400+</p>
-              <p className="text-xs text-studio-500 mt-1">Shoot Hours Booked</p>
-            </div>
-            <div>
-              <p className="text-3xl sm:text-4xl font-extrabold text-amber-500">99.8%</p>
-              <p className="text-xs text-studio-500 mt-1">On-Time Check-In</p>
-            </div>
-            <div>
-              <p className="text-3xl sm:text-4xl font-extrabold text-amber-500">$1M</p>
-              <p className="text-xs text-studio-500 mt-1">Host Protection</p>
-            </div>
+        {/* Stats Row */}
+        <div className="p-10 rounded-3xl border border-studio-200 dark:border-studio-800 bg-gradient-to-r from-amber-500/10 via-studio-100 dark:via-studio-900 to-amber-500/5 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div>
+            <div className="text-3xl sm:text-4xl font-display font-extrabold text-amber-500">2,400+</div>
+            <div className="text-xs sm:text-sm text-studio-600 dark:text-studio-400 mt-1">Productions Booked</div>
+          </div>
+          <div>
+            <div className="text-3xl sm:text-4xl font-display font-extrabold text-amber-500">450+</div>
+            <div className="text-xs sm:text-sm text-studio-600 dark:text-studio-400 mt-1">Verified Stages</div>
+          </div>
+          <div>
+            <div className="text-3xl sm:text-4xl font-display font-extrabold text-amber-500">99.8%</div>
+            <div className="text-xs sm:text-sm text-studio-600 dark:text-studio-400 mt-1">On-Time Access Rate</div>
+          </div>
+          <div>
+            <div className="text-3xl sm:text-4xl font-display font-extrabold text-amber-500">$0</div>
+            <div className="text-xs sm:text-sm text-studio-600 dark:text-studio-400 mt-1">Double Booking Incidents</div>
           </div>
         </div>
       </div>
     </div>
   );
 }
-

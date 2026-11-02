@@ -49,7 +49,7 @@ const PRESET_AMENITIES = [
 const SAMPLE_IMAGE_PRESETS = [
   {
     label: "Daylight Cyc",
-    url: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1200&q=80",
+    url: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80",
   },
   {
     label: "Cinema Stage",
@@ -61,7 +61,7 @@ const SAMPLE_IMAGE_PRESETS = [
   },
   {
     label: "Music Suite",
-    url: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1200&q=80",
+    url: "https://images.unsplash.com/photo-1598653222000-6b7b7a552625?auto=format&fit=crop&w=1200&q=80",
   },
   {
     label: "Ceramics Loft",

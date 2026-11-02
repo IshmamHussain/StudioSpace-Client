@@ -1,8 +1,14 @@
 import React from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { HowItWorks } from "../../components/home/HowItWorks";
 import { HostGuarantee } from "../../components/home/HostGuarantee";
-import { Compass, PlusCircle, CheckCircle2 } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "How It Works",
+  description:
+    "Discover how StudioSpace connects independent filmmakers, photographers, and audio engineers with production-ready stages in four simple steps.",
+};
 
 export default function HowItWorksPage() {
   return (
@@ -53,4 +59,3 @@ export default function HowItWorksPage() {
     </div>
   );
 }
-

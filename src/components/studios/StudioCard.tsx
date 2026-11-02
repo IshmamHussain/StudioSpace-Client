@@ -18,6 +18,7 @@ export function StudioCard({ studio, initialSaved = false, onWishlistChange }: S
   const { isAuthenticated } = useAuth();
   const [isSaved, setIsSaved] = useState(initialSaved);
   const [isToggling, setIsToggling] = useState(false);
+  const [imgSrc, setImgSrc] = useState(studio.image);
 
   const handleWishlistToggle = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -65,10 +66,15 @@ export function StudioCard({ studio, initialSaved = false, onWishlistChange }: S
       {/* Studio Image with Aspect Ratio & Hover Zoom */}
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-studio-100 dark:bg-studio-800">
         <img
-          src={studio.image}
+          src={imgSrc}
           alt={studio.title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
+          onError={() => {
+            setImgSrc(
+              "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=800&q=80"
+            );
+          }}
         />
 
         {/* Gradient Scrim */}

@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { IStudio } from "../../types";
 import { api } from "../../lib/api";
 import { StudioCard } from "../../components/studios/StudioCard";
 import { Search, SlidersHorizontal, Sparkles, Filter, X } from "lucide-react";
+import Loading from "../loading";
 
 const CATEGORIES = [
   "All",
@@ -16,7 +17,7 @@ const CATEGORIES = [
   "Art Workshop",
 ];
 
-export default function ExploreStudiosPage() {
+function ExploreStudiosContent() {
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get("category") || "All";
 
@@ -72,58 +73,63 @@ export default function ExploreStudiosPage() {
         </div>
 
         {/* Filter Controls Bar */}
-        <div className="p-4 sm:p-5 rounded-3xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900/70 backdrop-blur-md shadow-sm space-y-4">
-          <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
+        <div className="p-4 sm:p-5 rounded-3xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900/90 shadow-sm backdrop-blur-md space-y-4">
+          <div className="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center justify-between">
             {/* Search Input */}
             <div className="relative flex-1">
-              <Search className="w-4 h-4 text-studio-400 absolute left-3.5 top-3" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-studio-400" />
               <input
                 type="text"
+                placeholder="Search by title, location (e.g. Brooklyn, Burbank), or hardware..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search by studio name, location (e.g. Brooklyn, Nashville), or gear..."
-                className="w-full pl-10 pr-9 py-2.5 text-sm rounded-xl border border-studio-200 dark:border-studio-800 bg-studio-50 dark:bg-studio-950 text-foreground placeholder:text-studio-400 focus:outline-none focus:ring-2 focus:ring-amber-500/30"
+                className="w-full pl-10 pr-10 py-2.5 text-sm rounded-xl border border-studio-200 dark:border-studio-800 bg-studio-50 dark:bg-studio-950 text-foreground placeholder:text-studio-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all"
               />
               {searchTerm && (
                 <button
                   onClick={() => setSearchTerm("")}
-                  className="absolute right-3 top-3 text-studio-400 hover:text-studio-600 dark:hover:text-studio-200"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 p-1 text-studio-400 hover:text-studio-600 dark:hover:text-studio-200"
                 >
-                  <X className="w-4 h-4" />
+                  <X className="w-3.5 h-3.5" />
                 </button>
               )}
             </div>
 
             {/* Sort Dropdown */}
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-semibold text-studio-500 whitespace-nowrap">
-                Sort By:
+            <div className="flex items-center gap-2 sm:self-auto">
+              <span className="text-xs font-semibold text-studio-500 flex-shrink-0 flex items-center gap-1">
+                <SlidersHorizontal className="w-3.5 h-3.5" />
+                <span>Sort By:</span>
               </span>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="px-3 py-2 text-sm rounded-xl border border-studio-200 dark:border-studio-800 bg-studio-50 dark:bg-studio-950 text-foreground focus:outline-none focus:ring-2 focus:ring-amber-500/30 font-medium"
+                className="px-3 py-2 text-xs font-semibold rounded-xl border border-studio-200 dark:border-studio-800 bg-studio-50 dark:bg-studio-950 text-foreground focus:outline-none focus:ring-2 focus:ring-amber-500 cursor-pointer"
               >
-                <option value="rating">Top Rated (★)</option>
+                <option value="rating">Highest Rated</option>
                 <option value="price_asc">Price: Low to High</option>
                 <option value="price_desc">Price: High to Low</option>
-                <option value="featured">Newest Spaces</option>
+                <option value="newest">Recently Listed</option>
               </select>
             </div>
           </div>
 
-          {/* Category Filter Chips */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 pt-1 no-scrollbar">
+          {/* Category Pills */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none pt-2 border-t border-studio-100 dark:border-studio-800/80">
+            <span className="text-xs font-semibold text-studio-400 flex items-center gap-1 pl-1 flex-shrink-0 mr-1">
+              <Filter className="w-3 h-3" />
+              <span>Category:</span>
+            </span>
             {CATEGORIES.map((cat) => {
-              const isSelected = selectedCategory === cat;
+              const active = selectedCategory === cat;
               return (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 text-xs font-semibold rounded-xl whitespace-nowrap transition-all duration-150 ${
-                    isSelected
-                      ? "bg-amber-400 text-studio-950 shadow-sm font-bold scale-[1.02]"
-                      : "bg-studio-100 dark:bg-studio-800/60 text-studio-700 dark:text-studio-300 hover:bg-studio-200 dark:hover:bg-studio-800"
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all whitespace-nowrap active:scale-95 ${
+                    active
+                      ? "bg-amber-400 text-studio-950 shadow-sm"
+                      : "bg-studio-100 dark:bg-studio-800/70 text-studio-600 dark:text-studio-300 hover:bg-studio-200 dark:hover:bg-studio-700 hover:text-foreground"
                   }`}
                 >
                   {cat}
@@ -133,57 +139,50 @@ export default function ExploreStudiosPage() {
           </div>
         </div>
 
-        {/* Results Count & Active Filters Indicator */}
+        {/* Results Count & Quick Summary */}
         <div className="flex items-center justify-between text-xs text-studio-500 px-1">
           <span>
-            Showing <strong className="text-foreground">{studios.length}</strong> studio spaces
-            {selectedCategory !== "All" && ` in "${selectedCategory}"`}
-            {searchTerm && ` matching "${searchTerm}"`}
+            Showing <strong className="text-foreground">{studios.length}</strong> creative {studios.length === 1 ? "space" : "spaces"}
+            {selectedCategory !== "All" && ` in ${selectedCategory}`}
           </span>
-
-          {(selectedCategory !== "All" || searchTerm) && (
-            <button
-              onClick={() => {
-                setSelectedCategory("All");
-                setSearchTerm("");
-              }}
-              className="text-amber-500 hover:underline font-semibold"
-            >
-              Reset Filters
-            </button>
+          {searchTerm && (
+            <span>
+              Matching &ldquo;{searchTerm}&rdquo;
+            </span>
           )}
         </div>
 
-        {/* Loading Skeletons */}
+        {/* Studio Grid / Loading State */}
         {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {[...Array(6)].map((_, i) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {[1, 2, 3, 4, 5, 6].map((n) => (
               <div
-                key={i}
-                className="h-[430px] rounded-2xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900/60 overflow-hidden animate-pulse"
+                key={n}
+                className="rounded-2xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900/60 overflow-hidden shadow-sm animate-pulse flex flex-col h-[380px]"
               >
                 <div className="aspect-[16/10] bg-studio-200 dark:bg-studio-800" />
-                <div className="p-5 space-y-3">
-                  <div className="h-5 bg-studio-200 dark:bg-studio-800 rounded-md w-3/4" />
-                  <div className="h-4 bg-studio-200 dark:bg-studio-800 rounded-md w-1/2" />
-                  <div className="h-12 bg-studio-100 dark:bg-studio-800/40 rounded-md" />
-                  <div className="h-8 bg-studio-200 dark:bg-studio-800 rounded-xl w-full pt-2" />
+                <div className="p-5 space-y-3 flex-1 flex flex-col">
+                  <div className="h-5 bg-studio-200 dark:bg-studio-800 rounded w-3/4" />
+                  <div className="h-4 bg-studio-200 dark:bg-studio-800 rounded w-full" />
+                  <div className="h-4 bg-studio-200 dark:bg-studio-800 rounded w-1/2" />
+                  <div className="mt-auto pt-3 border-t border-studio-100 dark:border-studio-800 flex justify-between items-center">
+                    <div className="h-6 bg-studio-200 dark:bg-studio-800 rounded w-16" />
+                    <div className="h-8 bg-studio-200 dark:bg-studio-800 rounded-xl w-24" />
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         ) : studios.length > 0 ? (
-          /* Studio Grid with Uniform Card Dimensions */
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {studios.map((studio) => (
               <StudioCard key={studio._id} studio={studio} />
             ))}
           </div>
         ) : (
-          /* Friendly Empty State with CTA */
-          <div className="text-center py-16 px-4 rounded-3xl border border-dashed border-studio-300 dark:border-studio-800 bg-white/40 dark:bg-studio-900/20 max-w-lg mx-auto space-y-4">
-            <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center mx-auto">
-              <Search className="w-6 h-6" />
+          <div className="py-20 text-center rounded-3xl border border-dashed border-studio-200 dark:border-studio-800 p-8 space-y-4">
+            <div className="w-16 h-16 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center mx-auto">
+              <Search className="w-8 h-8" />
             </div>
             <h3 className="text-lg font-bold text-foreground">
               No Studio Spaces Match Your Criteria
@@ -209,3 +208,10 @@ export default function ExploreStudiosPage() {
   );
 }
 
+export default function ExploreStudiosPage() {
+  return (
+    <Suspense fallback={<Loading />}>
+      <ExploreStudiosContent />
+    </Suspense>
+  );
+}
