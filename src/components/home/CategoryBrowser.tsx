@@ -23,7 +23,7 @@ const CATEGORIES: CategoryItem[] = [
     gradient: "from-sky-500/20 to-blue-600/10",
     count: "48 Spaces",
     image:
-      "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "film",
@@ -34,7 +34,7 @@ const CATEGORIES: CategoryItem[] = [
     gradient: "from-rose-500/20 to-red-600/10",
     count: "32 Stages",
     image:
-      "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "podcast",
@@ -45,7 +45,7 @@ const CATEGORIES: CategoryItem[] = [
     gradient: "from-purple-500/20 to-indigo-600/10",
     count: "26 Lounges",
     image:
-      "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1589903308904-1010c2294adc?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "music",
@@ -56,7 +56,7 @@ const CATEGORIES: CategoryItem[] = [
     gradient: "from-amber-500/20 to-orange-600/10",
     count: "41 Suites",
     image:
-      "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "art",
@@ -67,7 +67,7 @@ const CATEGORIES: CategoryItem[] = [
     gradient: "from-emerald-500/20 to-teal-600/10",
     count: "19 Studios",
     image:
-      "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&w=800&q=80",
   },
 ];
 

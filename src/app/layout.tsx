@@ -46,7 +46,7 @@ export const metadata: Metadata = {
       "High-performance creative workspaces for filmmakers, photographers, and audio engineers. Instant booking with verified hardware specs and double-booking collision guards.",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1200&h=630&q=80",
+        url: "https://images.unsplash.com/photo-1542204165-65bf26472b9b?auto=format&fit=crop&w=1200&h=630&q=80",
         width: 1200,
         height: 630,
         alt: "StudioSpace Creative Studio Network",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     description:
       "High-performance creative workspaces for filmmakers, photographers, and audio engineers.",
     images: [
-      "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1200&h=630&q=80",
+      "https://images.unsplash.com/photo-1542204165-65bf26472b9b?auto=format&fit=crop&w=1200&h=630&q=80",
     ],
     creator: "@StudioSpace",
   },

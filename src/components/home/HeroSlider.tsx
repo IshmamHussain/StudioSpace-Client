@@ -23,7 +23,7 @@ const SLIDES: SlideData[] = [
     subtext:
       "Reserve verified soundstages with 200A Camlock power distribution, NC-25 acoustic isolation, and pre-rigged ARRI lighting arrays.",
     image:
-      "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1920&q=85",
+      "https://images.unsplash.com/photo-1542204165-65bf26472b9b?auto=format&fit=crop&w=1920&q=85",
     category: "Film Stage",
     specs: ["Camlock 200A 3-Phase", "NC-25 Floating Floor", "DMX Lighting Grid"],
   },
@@ -34,7 +34,7 @@ const SLIDES: SlideData[] = [
     subtext:
       "24ft seamless infinite cyclorama walls drenched in natural northern light, complete with Profoto AirTTL strobes and dedicated hair & makeup suites.",
     image:
-      "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1920&q=85",
+      "https://images.unsplash.com/photo-1582533561751-ef6f6ab93a2e?auto=format&fit=crop&w=1920&q=85",
     category: "Photo Studio",
     specs: ["24ft White Cyclorama", "Profoto D2 1000W", "Motorized Diffusion"],
   },
