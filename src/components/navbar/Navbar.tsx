@@ -97,8 +97,8 @@ export function Navbar() {
             {isAuthenticated && user ? (
               <div className="relative" ref={dropdownRef}>
                 <button
-                  onClick={() => setDropdownOpen(!dropdownOpen)}
-                  onMouseEnter={() => setDropdownOpen(true)}
+                  type="button"
+                  onClick={() => setDropdownOpen((prev) => !prev)}
                   className="flex items-center gap-2.5 p-1 pl-2 rounded-full border border-studio-200 dark:border-studio-800 bg-studio-50 dark:bg-studio-900/60 hover:border-amber-500/40 transition-colors focus:outline-none"
                   aria-expanded={dropdownOpen}
                 >
@@ -122,7 +122,6 @@ export function Navbar() {
                 {/* Dropdown Menu */}
                 {dropdownOpen && (
                   <div
-                    onMouseLeave={() => setDropdownOpen(false)}
                     className="absolute right-0 mt-2 w-64 rounded-2xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900 shadow-xl shadow-black/10 dark:shadow-black/40 py-2.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
                   >
                     <div className="px-4 py-2 border-b border-studio-100 dark:border-studio-800">
@@ -135,6 +134,7 @@ export function Navbar() {
                     <div className="py-1">
                       <Link
                         href="/add-studio"
+                        onClick={() => setDropdownOpen(false)}
                         className="flex items-center gap-2.5 px-4 py-2 text-sm text-studio-700 dark:text-studio-200 hover:bg-studio-100 dark:hover:bg-studio-800 transition-colors"
                       >
                         <PlusCircle className="w-4 h-4 text-amber-500" />
@@ -143,6 +143,7 @@ export function Navbar() {
 
                       <Link
                         href="/my-listings"
+                        onClick={() => setDropdownOpen(false)}
                         className="flex items-center gap-2.5 px-4 py-2 text-sm text-studio-700 dark:text-studio-200 hover:bg-studio-100 dark:hover:bg-studio-800 transition-colors"
                       >
                         <FolderKanban className="w-4 h-4 text-studio-400" />
@@ -151,6 +152,7 @@ export function Navbar() {
 
                       <Link
                         href="/my-bookings"
+                        onClick={() => setDropdownOpen(false)}
                         className="flex items-center gap-2.5 px-4 py-2 text-sm text-studio-700 dark:text-studio-200 hover:bg-studio-100 dark:hover:bg-studio-800 transition-colors"
                       >
                         <CalendarCheck className="w-4 h-4 text-studio-400" />
@@ -159,6 +161,7 @@ export function Navbar() {
 
                       <Link
                         href="/wishlist"
+                        onClick={() => setDropdownOpen(false)}
                         className="flex items-center gap-2.5 px-4 py-2 text-sm text-studio-700 dark:text-studio-200 hover:bg-studio-100 dark:hover:bg-studio-800 transition-colors"
                       >
                         <Heart className="w-4 h-4 text-rose-500" />
@@ -168,7 +171,10 @@ export function Navbar() {
 
                     <div className="border-t border-studio-100 dark:border-studio-800 pt-1 mt-1">
                       <button
-                        onClick={handleLogout}
+                        onClick={() => {
+                          setDropdownOpen(false);
+                          handleLogout();
+                        }}
                         className="w-full flex items-center gap-2.5 px-4 py-2 text-sm text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors"
                       >
                         <LogOut className="w-4 h-4" />
