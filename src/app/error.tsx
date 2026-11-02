@@ -64,3 +64,4 @@ export default function ErrorBoundary({ error, reset }: ErrorProps) {
     </div>
   );
 }
+
