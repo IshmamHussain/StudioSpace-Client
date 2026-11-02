@@ -144,9 +144,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
 
       // Initiate official BetterAuth Google OAuth 2.0 flow
+      const targetOrigin = typeof window !== "undefined" ? window.location.origin : "https://studio-space-rho.vercel.app";
       const res = await authClient.signIn.social({
         provider: "google",
-        callbackURL: window.location.origin,
+        callbackURL: `${targetOrigin}/`,
+        errorCallbackURL: `${targetOrigin}/login?error=google_failed`,
       });
 
       if (res?.error) {
