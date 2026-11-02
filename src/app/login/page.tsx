@@ -42,9 +42,8 @@ export default function LoginPage() {
   const handleGoogleLogin = async () => {
     setSubmitting(true);
     const success = await loginWithGoogle();
-    setSubmitting(false);
-    if (success) {
-      router.push(redirectUrl);
+    if (!success) {
+      setSubmitting(false);
     }
   };
 
@@ -171,11 +170,12 @@ export default function LoginPage() {
           </form>
 
           {/* Social Divider */}
-          <div className="relative flex items-center justify-center">
-            <div className="border-t border-studio-200 dark:border-studio-800 w-full" />
-            <span className="bg-white dark:bg-studio-900 px-3 text-xs text-studio-500 uppercase tracking-wider">
+          <div className="relative my-4 flex items-center">
+            <div className="flex-1 border-t border-studio-200 dark:border-studio-800" />
+            <span className="px-3 text-xs uppercase tracking-wider text-studio-500 font-medium whitespace-nowrap">
               Or continue with
             </span>
+            <div className="flex-1 border-t border-studio-200 dark:border-studio-800" />
           </div>
 
           {/* Google Social Login Button (Google only per prompt rule) */}

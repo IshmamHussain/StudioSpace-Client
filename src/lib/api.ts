@@ -2,12 +2,29 @@ import { IStudio, IBooking, IUser, StudioCategory } from "../types";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
 
+// Fast client-side SWR memory cache
+const clientCache = new Map<string, { data: any; expiry: number }>();
+const CLIENT_CACHE_TTL_MS = 60 * 1000; // 60 seconds
+
+export function clearClientCache(): void {
+  clientCache.clear();
+}
+
 export async function fetcher<T>(
   endpoint: string,
   options: RequestInit = {}
 ): Promise<T> {
   const url = `${API_BASE_URL}${endpoint}`;
-  
+  const isGet = !options.method || options.method === "GET";
+
+  // Instant response from client memory cache for GET requests
+  if (isGet && !options.headers?.hasOwnProperty("Cache-Control")) {
+    const cached = clientCache.get(url);
+    if (cached && cached.expiry > Date.now()) {
+      return cached.data as T;
+    }
+  }
+
   const headers = new Headers(options.headers || {});
   if (!headers.has("Content-Type") && !(options.body instanceof FormData)) {
     headers.set("Content-Type", "application/json");
@@ -24,6 +41,13 @@ export async function fetcher<T>(
   if (!response.ok) {
     const errorMsg = data.message || `Request failed with status ${response.status}`;
     throw new Error(errorMsg);
+  }
+
+  if (isGet) {
+    clientCache.set(url, { data, expiry: Date.now() + CLIENT_CACHE_TTL_MS });
+  } else {
+    // Invalidate client cache on any mutation (POST/PUT/PATCH/DELETE)
+    clientCache.clear();
   }
 
   return data as T;
