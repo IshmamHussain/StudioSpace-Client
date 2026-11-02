@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useEffect, useState, useCallback } from "react";
 import { IUser } from "../types";
 import { api } from "../lib/api";
+import { authClient } from "../lib/auth-client";
 import { toast } from "sonner";
 
 interface AuthContextType {
@@ -38,6 +39,26 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const refreshUser = useCallback(async () => {
     try {
+      // 1. Check Better Auth active session
+      const betterSession = await authClient.getSession().catch(() => null);
+      if (betterSession?.data?.user) {
+        const bUser = betterSession.data.user;
+        const mappedUser: IUser = {
+          id: bUser.id,
+          name: bUser.name,
+          email: bUser.email,
+          photoURL:
+            bUser.image ||
+            `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(bUser.name)}`,
+          role: (bUser as any).role || "creator",
+        };
+        setUser(mappedUser);
+        localStorage.setItem(LOCAL_STORAGE_USER_KEY, JSON.stringify(mappedUser));
+        setLoading(false);
+        return;
+      }
+
+      // 2. Fallback to API getMe check
       const res = await api.auth.getMe();
       if (res.success && res.user) {
         setUser(res.user);
@@ -47,7 +68,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
       }
     } catch {
-      // If getMe fails (e.g. 401 or network), clear user
       setUser(null);
       localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
     } finally {
@@ -107,25 +127,48 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }): Promise<boolean> => {
     try {
       setLoading(true);
-      // Creator quick-auth simulation for staging/demo
-      const defaultUser = {
-        name: googleUser?.name || "Marcus Sterling (Google Creator)",
-        email: googleUser?.email || "creator.google@studiospace.io",
-        photoURL:
-          googleUser?.photoURL ||
-          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
-      };
 
-      const res = await api.auth.googleAuth(defaultUser);
-      if (res.success && res.user) {
-        setUser(res.user);
-        localStorage.setItem(LOCAL_STORAGE_USER_KEY, JSON.stringify(res.user));
-        toast.success("Successfully authenticated with Google!");
+      // If explicit user details were provided:
+      if (googleUser && googleUser.email) {
+        const res = await api.auth.googleAuth({
+          name: googleUser.name || googleUser.email.split("@")[0],
+          email: googleUser.email,
+          photoURL: googleUser.photoURL,
+        });
+        if (res.success && res.user) {
+          setUser(res.user);
+          localStorage.setItem(LOCAL_STORAGE_USER_KEY, JSON.stringify(res.user));
+          toast.success("Signed in with Google!");
+          return true;
+        }
+      }
+
+      // Initiate official BetterAuth Google OAuth 2.0 flow
+      const res = await authClient.signIn.social({
+        provider: "google",
+        callbackURL: window.location.origin,
+      });
+
+      if (res?.error) {
+        const msg = res.error.message || "";
+        if (msg.includes("CLIENT_ID_AND_SECRET_REQUIRED") || res.error.status === 400 || res.error.status === 500) {
+          toast.error(
+            "Google OAuth requires GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET in server/.env to redirect to Google accounts."
+          );
+        } else {
+          toast.error(msg || "Google authentication failed.");
+        }
+        return false;
+      }
+
+      if (res?.data?.url) {
+        window.location.href = res.data.url;
         return true;
       }
-      return false;
+
+      return true;
     } catch (err: any) {
-      toast.error(err.message || "Google authentication failed.");
+      toast.error(err.message || "Failed to initiate Google sign-in.");
       return false;
     } finally {
       setLoading(false);
@@ -134,6 +177,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const logout = async () => {
     try {
+      await authClient.signOut().catch(() => {});
       await api.auth.logout();
       setUser(null);
       localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
@@ -170,4 +214,3 @@ export function useAuth() {
   }
   return context;
 }
-
