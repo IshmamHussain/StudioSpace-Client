@@ -34,7 +34,7 @@ const SLIDES: SlideData[] = [
     subtext:
       "24ft seamless infinite cyclorama walls drenched in natural northern light, complete with Profoto AirTTL strobes and dedicated hair & makeup suites.",
     image:
-      "https://images.unsplash.com/photo-1582533561751-ef6f6ab93a2e?auto=format&fit=crop&w=1920&q=85",
+      "https://images.unsplash.com/photo-1768818928341-3b31b8965c6d?auto=format&fit=crop&w=1920&q=85",
     category: "Photo Studio",
     specs: ["24ft White Cyclorama", "Profoto D2 1000W", "Motorized Diffusion"],
   },

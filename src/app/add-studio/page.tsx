@@ -49,7 +49,7 @@ const PRESET_AMENITIES = [
 const SAMPLE_IMAGE_PRESETS = [
   {
     label: "Daylight Cyc",
-    url: "https://images.unsplash.com/photo-1582533561751-ef6f6ab93a2e?auto=format&fit=crop&w=1200&q=80",
+    url: "https://images.unsplash.com/photo-1736580602204-b940bb0423ec?auto=format&fit=crop&w=1200&q=80",
   },
   {
     label: "Cinema Stage",
