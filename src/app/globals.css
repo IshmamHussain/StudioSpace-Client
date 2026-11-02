@@ -27,10 +27,25 @@
     border-color: var(--card-border);
   }
 
+  html,
   body {
     background-color: var(--background);
     color: var(--foreground);
     font-feature-settings: "rlig" 1, "calt" 1;
+    transition: background-color 180ms cubic-bezier(0.4, 0, 0.2, 1),
+                color 180ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Smooth, hardware-accelerated color crossfade for structural surfaces */
+  header,
+  nav,
+  footer,
+  aside,
+  section,
+  .glass-panel {
+    transition: background-color 180ms cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 180ms cubic-bezier(0.4, 0, 0.2, 1),
+                color 180ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
