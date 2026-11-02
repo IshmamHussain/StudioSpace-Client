@@ -2,7 +2,7 @@
 
 StudioSpace is a high-performance peer-to-peer marketplace engineered for creators, filmmakers, photographers, podcasters, and musicians to discover, tour, and book verified production soundstages, daylight cycloramas, podcast lounges, and analog music suites.
 
-- **Live Site URL:** `https://studiospace-client.vercel.app` *(Update with your deployed Vercel URL)*
+- **Live Site URL:** `https://studio-space-rho.vercel.app` *(Production Vercel Deployment)*
 - **API Server URL:** `https://studiospace-server.onrender.com` *(Update with your deployed Backend URL)*
 
 ---
