@@ -7,6 +7,7 @@ import { api } from "../../lib/api";
 import { StudioCategory } from "../../types";
 import { toast } from "sonner";
 import confetti from "canvas-confetti";
+import { ImageUploader } from "../../components/shared/ImageUploader";
 import {
   PlusCircle,
   Upload,
@@ -291,46 +292,13 @@ export default function AddStudioPage() {
             </div>
           </div>
 
-          {/* Image Upload / URL Input (imgbb / direct URL) */}
-          <div className="space-y-3">
-            <label className="text-xs font-semibold text-studio-700 dark:text-studio-300 flex items-center justify-between">
-              <span>Primary Studio Image URL *</span>
-              <span className="text-[11px] text-amber-500 font-normal">Supports ImgBB / PostImage / Unsplash</span>
-            </label>
-            <div className="relative">
-              <Upload className="w-4 h-4 text-studio-400 absolute left-3.5 top-3" />
-              <input
-                type="url"
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
-                placeholder="https://images.unsplash.com/photo-..."
-                className="w-full pl-10 pr-3.5 py-2.5 text-sm rounded-xl border border-studio-200 dark:border-studio-800 bg-studio-50 dark:bg-studio-950 text-foreground placeholder:text-studio-400 focus:outline-none focus:ring-2 focus:ring-amber-500/30"
-                required
-              />
-            </div>
-
-            {/* Quick Sample Presets */}
-            <div className="flex flex-wrap items-center gap-1.5 pt-1">
-              <span className="text-[11px] text-studio-400 font-semibold mr-1">Quick Presets:</span>
-              {SAMPLE_IMAGE_PRESETS.map((preset) => (
-                <button
-                  type="button"
-                  key={preset.label}
-                  onClick={() => setImage(preset.url)}
-                  className="px-2.5 py-1 text-[11px] rounded-lg border border-studio-200 dark:border-studio-800 bg-studio-100 dark:bg-studio-800 text-studio-700 dark:text-studio-300 hover:border-amber-500/50 hover:text-amber-500 transition-colors"
-                >
-                  {preset.label}
-                </button>
-              ))}
-            </div>
-
-            {/* Live image preview */}
-            {image && (
-              <div className="relative w-full aspect-[21/9] rounded-2xl overflow-hidden border border-studio-200 dark:border-studio-800 bg-studio-100 dark:bg-studio-950">
-                <img src={image} alt="Preview" className="w-full h-full object-cover" />
-              </div>
-            )}
-          </div>
+          {/* Image Upload & ImgBB Integration */}
+          <ImageUploader
+            value={image}
+            onChange={setImage}
+            label="Primary Studio Image"
+            required
+          />
 
           {/* Gallery Extra Images (Comma-separated) */}
           <div className="space-y-1.5">

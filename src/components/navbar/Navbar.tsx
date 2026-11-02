@@ -19,6 +19,7 @@ import {
   Compass,
   Layers,
   Info,
+  LayoutDashboard,
 } from "lucide-react";
 
 export function Navbar() {
@@ -132,6 +133,15 @@ export function Navbar() {
                     </div>
 
                     <div className="py-1">
+                      <Link
+                        href="/dashboard"
+                        onClick={() => setDropdownOpen(false)}
+                        className="flex items-center gap-2.5 px-4 py-2 text-sm text-studio-700 dark:text-studio-200 hover:bg-studio-100 dark:hover:bg-studio-800 transition-colors"
+                      >
+                        <LayoutDashboard className="w-4 h-4 text-amber-500" />
+                        Dashboard
+                      </Link>
+
                       <Link
                         href="/add-studio"
                         onClick={() => setDropdownOpen(false)}
@@ -249,6 +259,14 @@ export function Navbar() {
                     <p className="text-xs text-studio-500 truncate">{user.email}</p>
                   </div>
                 </div>
+
+                <Link
+                  href="/dashboard"
+                  className="flex items-center gap-2.5 px-3 py-2 text-sm font-medium text-studio-700 dark:text-studio-200"
+                >
+                  <LayoutDashboard className="w-4 h-4 text-amber-500" />
+                  Dashboard
+                </Link>
 
                 <Link
                   href="/add-studio"
