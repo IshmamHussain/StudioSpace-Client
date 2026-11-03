@@ -239,7 +239,7 @@ function MyBookingsContent() {
                           title="Cancel pending reservation"
                         >
                           <XCircle className="w-3.5 h-3.5" />
-                          <span>Cancel Slot</span>
+                          <span>Cancel Booking</span>
                         </button>
                       ) : (
                         <span className="text-[11px] text-studio-400 italic px-2">
