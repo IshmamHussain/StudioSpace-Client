@@ -180,11 +180,13 @@ function MyBookingsContent() {
 
                     <div className="space-y-1.5">
                       <div className="flex flex-wrap items-center gap-2">
-                        <span
-                          className={`px-2.5 py-0.5 text-xs font-bold rounded-full border ${badgeStyle}`}
-                        >
-                          {booking.status}
-                        </span>
+                        {booking.status !== "Cancelled" && (
+                          <span
+                            className={`px-2.5 py-0.5 text-xs font-bold rounded-full border ${badgeStyle}`}
+                          >
+                            {booking.status}
+                          </span>
+                        )}
                         <span className="text-[11px] font-mono text-studio-400">
                           Ref: #{booking._id.slice(-6).toUpperCase()}
                         </span>
