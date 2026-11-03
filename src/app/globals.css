@@ -4,22 +4,22 @@
 
 @layer base {
   :root {
-    --background: #f8fafc;
-    --foreground: #0f172a;
+    --background: #faf8f5;
+    --foreground: #26211c;
     --surface: #ffffff;
-    --card-bg: #ffffff;
-    --card-border: #e2e8f0;
-    --card-border-hover: #cbd5e1;
+    --card-bg: #fffdfa;
+    --card-border: #eae3d6;
+    --card-border-hover: #ded5c4;
     --accent-amber: #d97706;
   }
 
   .dark {
-    --background: #0b0d11;
-    --foreground: #f8fafc;
-    --surface: #12151c;
-    --card-bg: #141822;
-    --card-border: #1e2636;
-    --card-border-hover: #334155;
+    --background: #13110f;
+    --foreground: #f5f1ea;
+    --surface: #1a1714;
+    --card-bg: #201b17;
+    --card-border: #2f2821;
+    --card-border-hover: #443a31;
     --accent-amber: #f59e0b;
   }
 
@@ -32,8 +32,8 @@
     background-color: var(--background);
     color: var(--foreground);
     font-feature-settings: "rlig" 1, "calt" 1;
-    transition: background-color 180ms cubic-bezier(0.4, 0, 0.2, 1),
-                color 180ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                color 200ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   /* Smooth, hardware-accelerated color crossfade for structural surfaces */
@@ -43,25 +43,25 @@
   aside,
   section,
   .glass-panel {
-    transition: background-color 180ms cubic-bezier(0.4, 0, 0.2, 1),
-                border-color 180ms cubic-bezier(0.4, 0, 0.2, 1),
-                color 180ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                color 200ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
 /* Custom Creative Glassmorphism & Accent Utilities */
 .glass-panel {
-  background: rgba(20, 24, 34, 0.75);
+  background: rgba(26, 22, 19, 0.78);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 245, 230, 0.08);
 }
 
 .light .glass-panel {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(250, 248, 245, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(60, 50, 40, 0.08);
 }
 
 .spotlight-gradient {
@@ -73,7 +73,7 @@
   );
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar - Warm Coffee & Cream */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -82,10 +82,17 @@
   background: var(--background);
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #3d352b;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #5c5347;
+}
+
+html:not(.dark) ::-webkit-scrollbar-thumb {
+  background: #dcd3c3;
+}
+html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: #a89f91;
 }
 

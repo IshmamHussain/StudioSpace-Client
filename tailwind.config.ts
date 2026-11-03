@@ -13,17 +13,17 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         studio: {
-          50: "#f8fafc",
-          100: "#f1f5f9",
-          200: "#e2e8f0",
-          300: "#cbd5e1",
-          400: "#94a3b8",
-          500: "#64748b",
-          600: "#475569",
-          700: "#334155",
-          800: "#1e293b",
-          900: "#0f172a",
-          950: "#0b0d11",
+          50: "#faf8f5",   // Warm Cream Linen
+          100: "#f4efe6",  // Soft Cream Oatmeal
+          200: "#e9e2d5",  // Cream Border / Accent
+          300: "#dcd3c3",  // Warm Sand
+          400: "#a89f91",  // Warm Graphite Muted
+          500: "#7d7365",  // Medium Roasted Taupe
+          600: "#5c5347",  // Deep Studio Taupe
+          700: "#3d352b",  // Warm Roasted Walnut
+          800: "#27221c",  // Coffee Card Surface
+          900: "#1c1814",  // Deep Roast Espresso
+          950: "#13110f",  // Dark Coffee & Graphite Base
           surface: "var(--surface)",
           card: "var(--card-bg)",
           border: "var(--card-border)",
