@@ -71,7 +71,7 @@ export function BookingModal({ studio, isOpen, onClose }: BookingModalProps) {
 
     if (!isAuthenticated) {
       toast.info("Please sign in or create an account to confirm your studio reservation.");
-      router.push(`/register?redirect=/my-bookings`);
+      router.push(`/register?redirect=/my-bookings&from=booking`);
       return;
     }
 

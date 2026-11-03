@@ -57,6 +57,9 @@ export default function LoginPage() {
     setSubmitting(false);
 
     if (success) {
+      if (redirectUrl.includes("my-bookings") || searchParams.get("from") === "booking") {
+        toast.success("Signed in successfully! Redirecting to your bookings section...");
+      }
       router.push(redirectUrl);
     } else {
       setFormError("Invalid email or password. Please verify your credentials.");

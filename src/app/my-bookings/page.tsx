@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, Suspense } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { IBooking } from "../../types";
 import { useAuth } from "../../context/AuthContext";
 import { api } from "../../lib/api";
@@ -20,14 +20,29 @@ import {
   Sparkles,
 } from "lucide-react";
 
-export default function MyBookingsPage() {
+function MyBookingsContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { user, loading: authLoading, isAuthenticated } = useAuth();
 
   const [bookings, setBookings] = useState<IBooking[]>([]);
   const [loading, setLoading] = useState(true);
   const [cancelTarget, setCancelTarget] = useState<IBooking | null>(null);
   const [isCancelling, setIsCancelling] = useState(false);
+  const hasGreeted = useRef(false);
+
+  useEffect(() => {
+    if (
+      !hasGreeted.current &&
+      (searchParams.get("from") === "booking" ||
+        searchParams.get("redirect")?.includes("bookings"))
+    ) {
+      hasGreeted.current = true;
+      toast.success(
+        "Welcome to your bookings section! You can review and manage your reservations here."
+      );
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     if (!authLoading && !isAuthenticated) {
@@ -303,6 +318,22 @@ export default function MyBookingsPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function MyBookingsPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-[60vh] flex items-center justify-center">
+          <p className="text-xs font-mono text-studio-500 animate-pulse">
+            Loading reservations...
+          </p>
+        </div>
+      }
+    >
+      <MyBookingsContent />
+    </Suspense>
   );
 }
 

@@ -81,7 +81,7 @@ export default function StudioDetailsPage() {
   const handleBookWorkspace = () => {
     if (!isAuthenticated) {
       toast.info("Please sign in or create an account to reserve this workspace.");
-      router.push(`/register?redirect=/my-bookings`);
+      router.push(`/register?redirect=/my-bookings&from=booking`);
       return;
     }
     setBookingModalOpen(true);
