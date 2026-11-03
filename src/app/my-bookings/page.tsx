@@ -149,7 +149,7 @@ function MyBookingsContent() {
             {[...Array(3)].map((_, i) => (
               <div
                 key={i}
-                className="h-32 rounded-2xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900 animate-pulse"
+                className="h-32 rounded-2xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900 animate-pulse"
               />
             ))}
           </div>
@@ -164,7 +164,7 @@ function MyBookingsContent() {
               return (
                 <div
                   key={booking._id}
-                  className={`p-5 sm:p-6 rounded-3xl border bg-white dark:bg-studio-900 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-6 transition-colors ${
+                  className={`p-5 sm:p-6 rounded-3xl border bg-studio-card dark:bg-studio-900 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-6 transition-colors ${
                     booking.status === "Cancelled"
                       ? "border-rose-500/40 dark:border-rose-500/30"
                       : "border-studio-200 dark:border-studio-800 hover:border-amber-500/30"
@@ -264,7 +264,7 @@ function MyBookingsContent() {
             })}
           </div>
         ) : (
-          <div className="text-center py-16 px-4 rounded-3xl border border-dashed border-studio-300 dark:border-studio-800 bg-white/40 dark:bg-studio-900/20 max-w-lg mx-auto space-y-4">
+          <div className="text-center py-16 px-4 rounded-3xl border border-dashed border-studio-300 dark:border-studio-800 bg-studio-card/60 dark:bg-studio-900/20 max-w-lg mx-auto space-y-4">
             <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center mx-auto">
               <CalendarCheck className="w-6 h-6" />
             </div>
@@ -288,7 +288,7 @@ function MyBookingsContent() {
         {/* Custom Modal for Cancellation Confirmation */}
         {cancelTarget && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-150">
-            <div className="w-full max-w-md rounded-3xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900 p-6 sm:p-8 space-y-5 shadow-2xl">
+            <div className="w-full max-w-md rounded-3xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900 p-6 sm:p-8 space-y-5 shadow-2xl">
               <div className="w-12 h-12 rounded-2xl bg-rose-500/10 text-rose-500 flex items-center justify-center">
                 <AlertCircle className="w-6 h-6" />
               </div>

@@ -13,17 +13,17 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         studio: {
-          50: "#faf8f5",   // Warm Cream Linen
-          100: "#f4efe6",  // Soft Cream Oatmeal
-          200: "#e9e2d5",  // Cream Border / Accent
-          300: "#dcd3c3",  // Warm Sand
-          400: "#a89f91",  // Warm Graphite Muted
-          500: "#7d7365",  // Medium Roasted Taupe
-          600: "#5c5347",  // Deep Studio Taupe
-          700: "#3d352b",  // Warm Roasted Walnut
-          800: "#27221c",  // Coffee Card Surface
-          900: "#1c1814",  // Deep Roast Espresso
-          950: "#13110f",  // Dark Coffee & Graphite Base
+          50: "#faf6ee",   // Rich Warm Clotted Cream Surface
+          100: "#efe8dc",  // Distinct Warm Cream Oatmeal Canvas
+          200: "#e3d7c4",  // Warm Cream Border & Accent
+          300: "#d3c4ad",  // Toasted Cream Sand
+          400: "#9c8e7c",  // Warm Graphite Taupe Muted
+          500: "#756756",  // Roasted Coffee Taupe
+          600: "#55493c",  // Deep Studio Coffee
+          700: "#3a3026",  // Warm Roasted Bean
+          800: "#241d17",  // Coffee Bean Card Surface
+          900: "#1c1714",  // Deep Roast Espresso & Graphite
+          950: "#120e0c",  // Dark Coffee & Graphite Base
           surface: "var(--surface)",
           card: "var(--card-bg)",
           border: "var(--card-border)",

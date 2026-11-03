@@ -112,7 +112,7 @@ export default function RegisterPage() {
   return (
     <div className="min-h-[85vh] flex items-center justify-center px-4 py-12 bg-studio-50/50 dark:bg-studio-950/40">
       <div className="w-full max-w-md">
-        <div className="p-8 sm:p-10 rounded-3xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900/70 backdrop-blur-xl shadow-xl space-y-6">
+        <div className="p-8 sm:p-10 rounded-3xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900/70 backdrop-blur-xl shadow-xl space-y-6">
           {/* Header */}
           <div className="text-center space-y-2">
             <h1 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight text-foreground">

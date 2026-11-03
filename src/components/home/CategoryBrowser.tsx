@@ -73,7 +73,7 @@ const CATEGORIES: CategoryItem[] = [
 
 export function CategoryBrowser() {
   return (
-    <section className="py-16 sm:py-24 bg-white dark:bg-studio-950 transition-colors">
+    <section className="py-16 sm:py-24 bg-studio-100/60 dark:bg-studio-950 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <p className="text-xs font-bold uppercase tracking-wider text-amber-500 mb-2">
@@ -99,7 +99,7 @@ export function CategoryBrowser() {
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <div className="p-3 rounded-xl bg-white dark:bg-studio-800 shadow-sm border border-studio-200 dark:border-studio-700/60 group-hover:scale-110 transition-transform">
+                    <div className="p-3 rounded-xl bg-studio-card dark:bg-studio-800 shadow-sm border border-studio-200 dark:border-studio-700/60 group-hover:scale-110 transition-transform">
                       <IconComponent className="w-5 h-5 text-amber-500" />
                     </div>
                     <ArrowUpRight className="w-4 h-4 text-studio-400 group-hover:text-amber-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />

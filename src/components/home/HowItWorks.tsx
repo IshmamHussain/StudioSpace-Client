@@ -55,7 +55,7 @@ export function HowItWorks() {
             return (
               <div
                 key={step.step}
-                className="relative flex flex-col p-6 rounded-2xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900/60 shadow-sm hover:border-amber-500/40 transition-all duration-300"
+                className="relative flex flex-col p-6 rounded-2xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900/60 shadow-sm hover:border-amber-500/40 transition-all duration-300"
               >
                 {/* Step Pill */}
                 <div className="flex items-center justify-between mb-4">

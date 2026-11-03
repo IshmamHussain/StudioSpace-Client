@@ -112,7 +112,7 @@ export function BookingModal({ studio, isOpen, onClose }: BookingModalProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="relative w-full max-w-lg rounded-3xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900 shadow-2xl overflow-hidden p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
+      <div className="relative w-full max-w-lg rounded-3xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900 shadow-2xl overflow-hidden p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
         {/* Close Button */}
         <button
           onClick={onClose}

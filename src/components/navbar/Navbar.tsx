@@ -60,7 +60,7 @@ export function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-studio-200 dark:border-studio-800/80 bg-white/80 dark:bg-studio-950/80 backdrop-blur-md transition-colors">
+    <header className="sticky top-0 z-40 w-full border-b border-studio-200 dark:border-studio-800/80 bg-studio-100/90 dark:bg-studio-950/90 backdrop-blur-md transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Left: Brand Logo */}
@@ -123,7 +123,7 @@ export function Navbar() {
                 {/* Dropdown Menu */}
                 {dropdownOpen && (
                   <div
-                    className="absolute right-0 mt-2 w-64 rounded-2xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900 shadow-xl shadow-black/10 dark:shadow-black/40 py-2.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
+                    className="absolute right-0 mt-2 w-64 rounded-2xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900 shadow-xl shadow-black/10 dark:shadow-black/40 py-2.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
                   >
                     <div className="px-4 py-2 border-b border-studio-100 dark:border-studio-800">
                       <p className="text-sm font-semibold text-studio-900 dark:text-white truncate">
@@ -228,7 +228,7 @@ export function Navbar() {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-950 px-4 pt-2 pb-6 space-y-3 animate-in fade-in duration-150">
+        <div className="md:hidden border-b border-studio-200 dark:border-studio-800 bg-studio-100 dark:bg-studio-950 px-4 pt-2 pb-6 space-y-3 animate-in fade-in duration-150">
           <div className="space-y-1">
             {navLinks.map((link) => (
               <Link

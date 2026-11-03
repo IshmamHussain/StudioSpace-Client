@@ -27,9 +27,9 @@ const ASSURANCES = [
 
 export function HostGuarantee() {
   return (
-    <section className="py-16 sm:py-24 bg-white dark:bg-studio-950 transition-colors">
+    <section className="py-16 sm:py-24 bg-studio-100/50 dark:bg-studio-950 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl border border-studio-200 dark:border-studio-800 bg-gradient-to-b from-studio-50 to-white dark:from-studio-900/40 dark:to-studio-950 p-8 sm:p-12 lg:p-16 overflow-hidden relative">
+        <div className="rounded-3xl border border-studio-200 dark:border-studio-800 bg-gradient-to-b from-studio-card to-studio-100 dark:from-studio-900/40 dark:to-studio-950 p-8 sm:p-12 lg:p-16 overflow-hidden relative">
           {/* Subtle Ambient Glow */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -66,7 +66,7 @@ export function HostGuarantee() {
                 return (
                   <div
                     key={idx}
-                    className="p-5 rounded-2xl border border-studio-200 dark:border-studio-800 bg-white/80 dark:bg-studio-900/60 backdrop-blur-md space-y-2 shadow-sm"
+                    className="p-5 rounded-2xl border border-studio-200 dark:border-studio-800 bg-studio-card/90 dark:bg-studio-900/60 backdrop-blur-md space-y-2 shadow-sm"
                   >
                     <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500 mb-3">
                       <Icon className="w-5 h-5" />

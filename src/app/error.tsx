@@ -21,7 +21,7 @@ export default function ErrorBoundary({ error, reset }: ErrorProps) {
         {/* Cinema Clapper / Slate Error Graphic */}
         <div className="relative mx-auto w-32 h-32 flex items-center justify-center">
           <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-rose-500/20 to-amber-500/20 blur-2xl animate-pulse" />
-          <div className="relative w-24 h-24 rounded-3xl border border-rose-500/30 bg-white/80 dark:bg-studio-900/80 backdrop-blur-md flex flex-col items-center justify-center shadow-xl">
+          <div className="relative w-24 h-24 rounded-3xl border border-rose-500/30 bg-studio-card/85 dark:bg-studio-900/80 backdrop-blur-md flex flex-col items-center justify-center shadow-xl">
             <ShieldAlert className="w-10 h-10 text-rose-500" />
             <span className="text-[10px] font-mono font-bold text-rose-500 mt-1 uppercase tracking-wider">
               Take Failed

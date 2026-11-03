@@ -91,7 +91,7 @@ export default function WishlistPage() {
             {[...Array(3)].map((_, i) => (
               <div
                 key={i}
-                className="h-[420px] rounded-2xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900 animate-pulse"
+                className="h-[420px] rounded-2xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900 animate-pulse"
               />
             ))}
           </div>
@@ -107,7 +107,7 @@ export default function WishlistPage() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 px-4 rounded-3xl border border-dashed border-studio-300 dark:border-studio-800 bg-white/40 dark:bg-studio-900/20 max-w-lg mx-auto space-y-4">
+          <div className="text-center py-16 px-4 rounded-3xl border border-dashed border-studio-300 dark:border-studio-800 bg-studio-card/60 dark:bg-studio-900/20 max-w-lg mx-auto space-y-4">
             <div className="w-12 h-12 rounded-2xl bg-rose-500/10 text-rose-500 flex items-center justify-center mx-auto">
               <Heart className="w-6 h-6" />
             </div>

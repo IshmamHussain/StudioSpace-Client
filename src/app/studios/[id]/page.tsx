@@ -140,7 +140,7 @@ function StudioDetailsContent() {
   ].filter((v, i, a) => a.indexOf(v) === i);
 
   return (
-    <div className="min-h-screen py-8 sm:py-12 bg-white dark:bg-studio-950 transition-colors">
+    <div className="min-h-screen py-8 sm:py-12 bg-background transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         {/* Back Link & Action Buttons */}
         <div className="flex items-center justify-between">
@@ -305,7 +305,7 @@ function StudioDetailsContent() {
               </div>
 
               <div className="space-y-4">
-                <div className="p-5 rounded-2xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900/60 space-y-2">
+                <div className="p-5 rounded-2xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900/60 space-y-2">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="w-8 h-8 rounded-full bg-amber-500/20 text-amber-500 font-bold text-xs flex items-center justify-center">
@@ -323,7 +323,7 @@ function StudioDetailsContent() {
                   </p>
                 </div>
 
-                <div className="p-5 rounded-2xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900/60 space-y-2">
+                <div className="p-5 rounded-2xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900/60 space-y-2">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="w-8 h-8 rounded-full bg-rose-500/20 text-rose-500 font-bold text-xs flex items-center justify-center">
@@ -346,7 +346,7 @@ function StudioDetailsContent() {
 
           {/* Right Column: Sticky Booking Widget Card (col-span-4) */}
           <div className="lg:col-span-4 sticky top-28">
-            <div className="p-6 sm:p-7 rounded-3xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900 shadow-xl space-y-5">
+            <div className="p-6 sm:p-7 rounded-3xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900 shadow-xl space-y-5">
               {/* Rate & Deposit Header */}
               <div className="flex items-baseline justify-between border-b border-studio-100 dark:border-studio-800 pb-4">
                 <div>

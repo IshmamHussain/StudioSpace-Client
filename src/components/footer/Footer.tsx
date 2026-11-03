@@ -29,7 +29,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="border-t border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-950 text-studio-600 dark:text-studio-400 transition-colors">
+    <footer className="border-t border-studio-200 dark:border-studio-800 bg-studio-100/90 dark:bg-studio-950 text-studio-600 dark:text-studio-400 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
           {/* Brand & Mission Statement (col-span-2) */}

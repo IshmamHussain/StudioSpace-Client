@@ -114,12 +114,12 @@ export default function MyListingsPage() {
             {[...Array(3)].map((_, i) => (
               <div
                 key={i}
-                className="h-28 rounded-2xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900 animate-pulse"
+                className="h-28 rounded-2xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900 animate-pulse"
               />
             ))}
           </div>
         ) : studios.length > 0 ? (
-          <div className="rounded-3xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900 shadow-sm overflow-hidden">
+          <div className="rounded-3xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900 shadow-sm overflow-hidden">
             {/* Desktop Table View */}
             <div className="hidden md:block overflow-x-auto">
               <table className="w-full text-left text-sm">
@@ -260,7 +260,7 @@ export default function MyListingsPage() {
             </div>
           </div>
         ) : (
-          <div className="text-center py-16 px-4 rounded-3xl border border-dashed border-studio-300 dark:border-studio-800 bg-white/40 dark:bg-studio-900/20 max-w-lg mx-auto space-y-4">
+          <div className="text-center py-16 px-4 rounded-3xl border border-dashed border-studio-300 dark:border-studio-800 bg-studio-card/60 dark:bg-studio-900/20 max-w-lg mx-auto space-y-4">
             <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center mx-auto">
               <FolderKanban className="w-6 h-6" />
             </div>
@@ -285,7 +285,7 @@ export default function MyListingsPage() {
         {/* Custom Confirmation Modal Dialog (Per Rule: No default alert/confirm!) */}
         {deleteTarget && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-150">
-            <div className="w-full max-w-md rounded-3xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900 p-6 sm:p-8 space-y-5 shadow-2xl">
+            <div className="w-full max-w-md rounded-3xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900 p-6 sm:p-8 space-y-5 shadow-2xl">
               <div className="w-12 h-12 rounded-2xl bg-rose-500/10 text-rose-500 flex items-center justify-center">
                 <AlertTriangle className="w-6 h-6" />
               </div>

@@ -81,7 +81,7 @@ export default function DashboardPage() {
     <div className="min-h-screen py-10 sm:py-16 bg-studio-50/50 dark:bg-studio-950/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         {/* Welcome Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 sm:p-8 rounded-3xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900 shadow-sm">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 sm:p-8 rounded-3xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900 shadow-sm">
           <div className="flex items-center gap-4">
             <div className="relative w-16 h-16 rounded-2xl overflow-hidden ring-4 ring-amber-500/20 flex-shrink-0">
               <img
@@ -132,7 +132,7 @@ export default function DashboardPage() {
           {/* 1. Studio Listings */}
           <Link
             href="/my-listings"
-            className="group p-6 rounded-2xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900/70 hover:border-amber-500/50 hover:shadow-lg transition-all"
+            className="group p-6 rounded-2xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900/70 hover:border-amber-500/50 hover:shadow-lg transition-all"
           >
             <div className="flex items-center justify-between mb-4">
               <div className="p-3 rounded-xl bg-amber-500/10 text-amber-500">
@@ -156,7 +156,7 @@ export default function DashboardPage() {
           {/* 2. Reservations */}
           <Link
             href="/my-bookings"
-            className="group p-6 rounded-2xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900/70 hover:border-amber-500/50 hover:shadow-lg transition-all"
+            className="group p-6 rounded-2xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900/70 hover:border-amber-500/50 hover:shadow-lg transition-all"
           >
             <div className="flex items-center justify-between mb-4">
               <div className="p-3 rounded-xl bg-sky-500/10 text-sky-500">
@@ -180,7 +180,7 @@ export default function DashboardPage() {
           {/* 3. Wishlist */}
           <Link
             href="/wishlist"
-            className="group p-6 rounded-2xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900/70 hover:border-amber-500/50 hover:shadow-lg transition-all"
+            className="group p-6 rounded-2xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900/70 hover:border-amber-500/50 hover:shadow-lg transition-all"
           >
             <div className="flex items-center justify-between mb-4">
               <div className="p-3 rounded-xl bg-rose-500/10 text-rose-500">
@@ -202,7 +202,7 @@ export default function DashboardPage() {
           </Link>
 
           {/* 4. Protection & Insurance */}
-          <div className="p-6 rounded-2xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900/70">
+          <div className="p-6 rounded-2xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900/70">
             <div className="flex items-center justify-between mb-4">
               <div className="p-3 rounded-xl bg-emerald-500/10 text-emerald-500">
                 <ShieldCheck className="w-5 h-5" />
@@ -222,7 +222,7 @@ export default function DashboardPage() {
         {/* Split Section: Recent Listings & Recent Bookings */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left: Recent Studio Listings */}
-          <div className="p-6 rounded-3xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900 space-y-4">
+          <div className="p-6 rounded-3xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900 space-y-4">
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-lg font-bold text-foreground">
@@ -296,7 +296,7 @@ export default function DashboardPage() {
           </div>
 
           {/* Right: Recent Bookings */}
-          <div className="p-6 rounded-3xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900 space-y-4">
+          <div className="p-6 rounded-3xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900 space-y-4">
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-lg font-bold text-foreground">

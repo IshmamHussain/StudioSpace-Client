@@ -204,7 +204,7 @@ export default function EditStudioPage() {
         {/* Pre-filled Form */}
         <form
           onSubmit={handleSubmit}
-          className="p-6 sm:p-10 rounded-3xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900 shadow-xl space-y-6"
+          className="p-6 sm:p-10 rounded-3xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900 shadow-xl space-y-6"
         >
           {/* Read-Only Host Details */}
           <div className="p-4 rounded-2xl border border-studio-100 dark:border-studio-800 bg-studio-50 dark:bg-studio-950/50 space-y-1">

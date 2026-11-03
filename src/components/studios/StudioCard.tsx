@@ -62,7 +62,7 @@ export function StudioCard({ studio, initialSaved = false, onWishlistChange }: S
     "bg-amber-500/10 text-amber-500 border-amber-500/20";
 
   return (
-    <div className="group flex flex-col h-full rounded-2xl border border-studio-200 dark:border-studio-800/80 bg-white dark:bg-studio-900/60 overflow-hidden shadow-sm hover:shadow-xl hover:border-amber-500/40 transition-all duration-300">
+    <div className="group flex flex-col h-full rounded-2xl border border-studio-200 dark:border-studio-800/80 bg-studio-card dark:bg-studio-900/60 overflow-hidden shadow-sm hover:shadow-xl hover:border-amber-500/40 transition-all duration-300">
       {/* Studio Image with Aspect Ratio & Hover Zoom */}
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-studio-100 dark:bg-studio-800">
         <img

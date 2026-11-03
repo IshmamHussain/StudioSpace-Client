@@ -33,7 +33,7 @@ export default function HowItWorksPage() {
         <HostGuarantee />
 
         {/* Final CTA Card */}
-        <div className="p-8 sm:p-12 rounded-3xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900 text-center space-y-6 max-w-3xl mx-auto shadow-md">
+        <div className="p-8 sm:p-12 rounded-3xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900 text-center space-y-6 max-w-3xl mx-auto shadow-md">
           <h3 className="text-2xl sm:text-3xl font-display font-bold text-foreground">
             Ready to Elevate Your Next Production?
           </h3>

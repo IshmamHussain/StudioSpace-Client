@@ -8,8 +8,8 @@ import { Toaster } from "sonner";
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#FFFFFF" },
-    { media: "(prefers-color-scheme: dark)", color: "#0B0D11" },
+    { media: "(prefers-color-scheme: light)", color: "#EFE8DC" },
+    { media: "(prefers-color-scheme: dark)", color: "#120E0C" },
   ],
   width: "device-width",
   initialScale: 1,

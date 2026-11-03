@@ -97,7 +97,7 @@ function ExploreStudiosContent() {
         </div>
 
         {/* Filter Controls Bar */}
-        <div className="p-4 sm:p-5 rounded-3xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900/90 shadow-sm backdrop-blur-md space-y-4">
+        <div className="p-4 sm:p-5 rounded-3xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900/90 shadow-sm backdrop-blur-md space-y-4">
           <div className="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center justify-between">
             {/* Search Input */}
             <div className="relative flex-1">
@@ -182,7 +182,7 @@ function ExploreStudiosContent() {
             {[1, 2, 3, 4, 5, 6].map((n) => (
               <div
                 key={n}
-                className="rounded-2xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900/60 overflow-hidden shadow-sm animate-pulse flex flex-col h-[380px]"
+                className="rounded-2xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900/60 overflow-hidden shadow-sm animate-pulse flex flex-col h-[380px]"
               >
                 <div className="aspect-[16/10] bg-studio-200 dark:bg-studio-800" />
                 <div className="p-5 space-y-3 flex-1 flex flex-col">

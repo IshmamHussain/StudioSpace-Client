@@ -9,7 +9,7 @@ export default function NotFound() {
         {/* Creative Studio 404 Illustration */}
         <div className="relative mx-auto w-36 h-36 flex items-center justify-center">
           <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-amber-500/20 to-cinema-red/20 blur-2xl animate-pulse" />
-          <div className="relative w-28 h-28 rounded-3xl border border-studio-200 dark:border-studio-800 bg-white/70 dark:bg-studio-900/80 backdrop-blur-md flex flex-col items-center justify-center shadow-2xl">
+          <div className="relative w-28 h-28 rounded-3xl border border-studio-200 dark:border-studio-800 bg-studio-card/80 dark:bg-studio-900/80 backdrop-blur-md flex flex-col items-center justify-center shadow-2xl">
             <Film className="w-12 h-12 text-amber-500 animate-bounce" />
             <div className="flex items-center gap-1 mt-1 text-xs font-mono font-bold text-cinema-red">
               <span className="w-2 h-2 rounded-full bg-cinema-red animate-ping" />

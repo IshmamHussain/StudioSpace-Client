@@ -64,7 +64,7 @@ export function FeaturedStudios() {
             {[...Array(6)].map((_, i) => (
               <div
                 key={i}
-                className="h-[420px] rounded-2xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900/60 overflow-hidden animate-pulse"
+                className="h-[420px] rounded-2xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900/60 overflow-hidden animate-pulse"
               >
                 <div className="aspect-[16/10] bg-studio-200 dark:bg-studio-800" />
                 <div className="p-5 space-y-3">

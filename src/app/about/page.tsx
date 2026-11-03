@@ -28,7 +28,7 @@ export default function AboutPage() {
 
         {/* 3 Core Values */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="p-8 rounded-3xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900 shadow-sm space-y-3">
+          <div className="p-8 rounded-3xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900 shadow-sm space-y-3">
             <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center">
               <Film className="w-6 h-6" />
             </div>
@@ -38,7 +38,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="p-8 rounded-3xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900 shadow-sm space-y-3">
+          <div className="p-8 rounded-3xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900 shadow-sm space-y-3">
             <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
               <ShieldCheck className="w-6 h-6" />
             </div>
@@ -48,7 +48,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="p-8 rounded-3xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900 shadow-sm space-y-3">
+          <div className="p-8 rounded-3xl border border-studio-200 dark:border-studio-800 bg-studio-card dark:bg-studio-900 shadow-sm space-y-3">
             <div className="w-12 h-12 rounded-2xl bg-rose-500/10 text-rose-500 flex items-center justify-center">
               <Heart className="w-6 h-6" />
             </div>

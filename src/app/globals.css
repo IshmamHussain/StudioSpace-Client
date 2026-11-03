@@ -4,22 +4,22 @@
 
 @layer base {
   :root {
-    --background: #faf8f5;
-    --foreground: #26211c;
-    --surface: #ffffff;
-    --card-bg: #fffdfa;
-    --card-border: #eae3d6;
-    --card-border-hover: #ded5c4;
+    --background: #efe8dc;
+    --foreground: #221c16;
+    --surface: #faf6ee;
+    --card-bg: #faf6ee;
+    --card-border: #ded1be;
+    --card-border-hover: #cbbea8;
     --accent-amber: #d97706;
   }
 
   .dark {
-    --background: #13110f;
-    --foreground: #f5f1ea;
-    --surface: #1a1714;
-    --card-bg: #201b17;
-    --card-border: #2f2821;
-    --card-border-hover: #443a31;
+    --background: #120e0c;
+    --foreground: #f5efe6;
+    --surface: #1d1714;
+    --card-bg: #221c18;
+    --card-border: #2e241c;
+    --card-border-hover: #44372c;
     --accent-amber: #f59e0b;
   }
 
@@ -27,13 +27,37 @@
     border-color: var(--card-border);
   }
 
-  html,
+  html {
+    background-color: var(--background);
+  }
+
   body {
     background-color: var(--background);
     color: var(--foreground);
     font-feature-settings: "rlig" 1, "calt" 1;
     transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
                 color 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: 100vh;
+  }
+
+  /* Tactile Cream Linen Texture for Light Mode */
+  html:not(.dark) body {
+    background-color: #efe8dc;
+    background-image: 
+      radial-gradient(at 10% 12%, rgba(255, 252, 245, 0.75) 0px, transparent 50%),
+      radial-gradient(at 90% 18%, rgba(234, 222, 203, 0.65) 0px, transparent 48%),
+      radial-gradient(at 50% 88%, rgba(228, 215, 194, 0.55) 0px, transparent 58%);
+    background-attachment: fixed;
+  }
+
+  /* Specialty Coffee & Graphite Mix Texture for Dark Mode */
+  .dark body {
+    background-color: #120e0c;
+    background-image: 
+      radial-gradient(at 15% 10%, rgba(38, 30, 24, 0.65) 0px, transparent 50%),
+      radial-gradient(at 85% 20%, rgba(28, 22, 18, 0.75) 0px, transparent 52%),
+      radial-gradient(at 50% 90%, rgba(18, 14, 12, 0.85) 0px, transparent 60%);
+    background-attachment: fixed;
   }
 
   /* Smooth, hardware-accelerated color crossfade for structural surfaces */
@@ -49,19 +73,42 @@
   }
 }
 
-/* Custom Creative Glassmorphism & Accent Utilities */
-.glass-panel {
-  background: rgba(26, 22, 19, 0.78);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 245, 230, 0.08);
+/* Creamy surface mapping in light mode - eliminates blinding pure white */
+html:not(.dark) .bg-white {
+  background-color: var(--card-bg) !important;
+}
+html:not(.dark) .bg-white\/95 {
+  background-color: rgba(250, 246, 238, 0.95) !important;
+}
+html:not(.dark) .bg-white\/90 {
+  background-color: rgba(250, 246, 238, 0.90) !important;
+}
+html:not(.dark) .bg-white\/80 {
+  background-color: rgba(250, 246, 238, 0.82) !important;
+}
+html:not(.dark) .bg-white\/70 {
+  background-color: rgba(250, 246, 238, 0.72) !important;
+}
+html:not(.dark) .bg-white\/60 {
+  background-color: rgba(250, 246, 238, 0.62) !important;
+}
+html:not(.dark) .bg-white\/40 {
+  background-color: rgba(245, 239, 229, 0.45) !important;
 }
 
-.light .glass-panel {
-  background: rgba(250, 248, 245, 0.88);
+/* Custom Creative Glassmorphism & Accent Utilities */
+.glass-panel {
+  background: rgba(29, 23, 20, 0.82);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(60, 50, 40, 0.08);
+  border: 1px solid rgba(255, 240, 220, 0.08);
+}
+
+html:not(.dark) .glass-panel {
+  background: rgba(250, 246, 238, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(60, 48, 36, 0.09);
 }
 
 .spotlight-gradient {
@@ -82,17 +129,16 @@
   background: var(--background);
 }
 ::-webkit-scrollbar-thumb {
-  background: #3d352b;
+  background: #3a3026;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #5c5347;
+  background: #55493c;
 }
 
 html:not(.dark) ::-webkit-scrollbar-thumb {
-  background: #dcd3c3;
+  background: #d3c4ad;
 }
 html:not(.dark) ::-webkit-scrollbar-thumb:hover {
-  background: #a89f91;
+  background: #9c8e7c;
 }
-
