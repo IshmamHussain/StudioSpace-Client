@@ -47,7 +47,7 @@ function MyBookingsContent() {
   useEffect(() => {
     if (!authLoading && !isAuthenticated) {
       toast.info("Please log in to review your studio bookings.");
-      router.push("/login?redirect=/my-bookings");
+      router.replace("/login?redirect=/my-bookings");
     }
   }, [authLoading, isAuthenticated, router]);
 

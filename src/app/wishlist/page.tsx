@@ -20,7 +20,7 @@ export default function WishlistPage() {
   useEffect(() => {
     if (!authLoading && !isAuthenticated) {
       toast.info("Please sign in to view your saved studio wishlist.");
-      router.push("/login?redirect=/wishlist");
+      router.replace("/login?redirect=/wishlist");
     }
   }, [authLoading, isAuthenticated, router]);
 

@@ -30,7 +30,7 @@ export default function MyListingsPage() {
   useEffect(() => {
     if (!authLoading && !isAuthenticated) {
       toast.info("Please log in to manage your studio listings.");
-      router.push("/login?redirect=/my-listings");
+      router.replace("/login?redirect=/my-listings");
     }
   }, [authLoading, isAuthenticated, router]);
 

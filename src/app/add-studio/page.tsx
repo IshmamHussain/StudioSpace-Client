@@ -93,7 +93,7 @@ export default function AddStudioPage() {
   useEffect(() => {
     if (!loading && !isAuthenticated) {
       toast.info("Please log in to list a studio space.");
-      router.push("/login?redirect=/add-studio");
+      router.replace("/login?redirect=/add-studio");
     }
   }, [loading, isAuthenticated, router]);
 

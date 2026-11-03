@@ -34,7 +34,7 @@ export default function DashboardPage() {
   useEffect(() => {
     if (!authLoading && !isAuthenticated) {
       toast.info("Please log in to access your Creator Dashboard.");
-      router.push("/login?redirect=/dashboard");
+      router.replace("/login?redirect=/dashboard");
     }
   }, [authLoading, isAuthenticated, router]);
 

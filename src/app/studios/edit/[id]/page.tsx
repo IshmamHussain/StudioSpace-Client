@@ -91,7 +91,7 @@ export default function EditStudioPage() {
   useEffect(() => {
     if (!authLoading && !isAuthenticated) {
       toast.info("Please log in to edit your studio space.");
-      router.push(`/login?redirect=/studios/edit/${id}`);
+      router.replace(`/login?redirect=/studios/edit/${id}`);
     }
   }, [authLoading, isAuthenticated, id, router]);
 
