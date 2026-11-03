@@ -164,7 +164,11 @@ function MyBookingsContent() {
               return (
                 <div
                   key={booking._id}
-                  className="p-5 sm:p-6 rounded-3xl border border-studio-200 dark:border-studio-800 bg-white dark:bg-studio-900 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-amber-500/30 transition-colors"
+                  className={`p-5 sm:p-6 rounded-3xl border bg-white dark:bg-studio-900 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-6 transition-colors ${
+                    booking.status === "Cancelled"
+                      ? "border-rose-500/40 dark:border-rose-500/30"
+                      : "border-studio-200 dark:border-studio-800 hover:border-amber-500/30"
+                  }`}
                 >
                   {/* Left Column: Image & Details */}
                   <div className="flex items-start sm:items-center gap-4">
@@ -241,9 +245,14 @@ function MyBookingsContent() {
                           <XCircle className="w-3.5 h-3.5" />
                           <span>Cancel Booking</span>
                         </button>
+                      ) : booking.status === "Cancelled" ? (
+                        <span className="px-3.5 py-2 text-xs font-bold rounded-xl border border-rose-500 bg-rose-500/10 text-rose-600 dark:text-rose-400 flex items-center gap-1.5 shadow-sm">
+                          <XCircle className="w-3.5 h-3.5 text-rose-500" />
+                          <span>Cancelled</span>
+                        </span>
                       ) : (
                         <span className="text-[11px] text-studio-400 italic px-2">
-                          {booking.status === "Cancelled" ? "Slot Voided" : "Lock In Active"}
+                          Lock In Active
                         </span>
                       )}
                     </div>
