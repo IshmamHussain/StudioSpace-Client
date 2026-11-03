@@ -2,13 +2,15 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "../../context/AuthContext";
 import { toast } from "sonner";
 import { User, Mail, Lock, Image as ImageIcon, ArrowRight, Check, X, Loader2 } from "lucide-react";
 
 export default function RegisterPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectUrl = searchParams.get("redirect") || "/";
   const { register, loginWithGoogle } = useAuth();
 
   const [name, setName] = useState("");
@@ -74,8 +76,12 @@ export default function RegisterPage() {
     setSubmitting(false);
 
     if (success) {
-      // On success, navigate to Login page
-      router.push("/login");
+      // On success, navigate to Login page (preserving target redirect)
+      router.push(
+        redirectUrl !== "/"
+          ? `/login?redirect=${encodeURIComponent(redirectUrl)}`
+          : "/login"
+      );
     } else {
       setFormError("Registration could not be completed. The email may already be in use.");
     }
@@ -293,7 +299,11 @@ export default function RegisterPage() {
           <div className="text-center pt-2 text-xs text-studio-600 dark:text-studio-400">
             <span>Already have an account? </span>
             <Link
-              href="/login"
+              href={
+                redirectUrl !== "/"
+                  ? `/login?redirect=${encodeURIComponent(redirectUrl)}`
+                  : "/login"
+              }
               className="font-bold text-amber-500 hover:underline"
             >
               Sign in here

@@ -255,7 +255,7 @@ export default function LoginPage() {
           <div className="text-center pt-2 text-xs text-studio-600 dark:text-studio-400">
             <span>Don't have an account yet? </span>
             <Link
-              href="/register"
+              href={redirectUrl !== "/" ? `/register?redirect=${encodeURIComponent(redirectUrl)}` : "/register"}
               className="font-bold text-amber-500 hover:underline"
             >
               Register here

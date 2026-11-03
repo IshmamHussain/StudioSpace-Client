@@ -70,8 +70,8 @@ export function BookingModal({ studio, isOpen, onClose }: BookingModalProps) {
     e.preventDefault();
 
     if (!isAuthenticated) {
-      toast.info("Please sign in to confirm your studio reservation.");
-      router.push(`/login?redirect=/studios/${studio._id}`);
+      toast.info("Please sign up or create an account to confirm your studio reservation.");
+      router.push(`/register?redirect=/studios/${studio._id}`);
       return;
     }
 
