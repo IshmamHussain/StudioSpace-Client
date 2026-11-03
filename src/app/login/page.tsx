@@ -119,10 +119,10 @@ export default function LoginPage() {
               <KeyRound className="w-6 h-6" />
             </div>
             <h1 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight text-foreground">
-              Sign In to StudioSpace
+              User Login
             </h1>
             <p className="text-xs sm:text-sm text-studio-600 dark:text-studio-400">
-              Access your studio listings, reserved soundstages, and creator dashboard.
+              Sign in to access your studio listings, reserved soundstages, and creator dashboard.
             </p>
           </div>
 
@@ -207,7 +207,7 @@ export default function LoginPage() {
               disabled={submitting || googleLoading}
               className="w-full py-3 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-studio-950 font-bold text-sm transition-all hover:shadow-glow disabled:opacity-60 flex items-center justify-center gap-2"
             >
-              <span>{submitting ? "Authenticating..." : "Sign In to StudioSpace"}</span>
+              <span>{submitting ? "Authenticating..." : "Login"}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </form>

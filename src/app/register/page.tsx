@@ -61,8 +61,8 @@ export default function RegisterPage() {
     }
 
     if (!isPasswordValid) {
-      setFormError("Password does not meet the security criteria.");
-      toast.error("Please satisfy all password criteria before registering.");
+      setFormError("Password must be at least 6 characters long and contain both uppercase and lowercase letters.");
+      toast.error("Password must be at least 6 characters long and contain both uppercase and lowercase letters.");
       return;
     }
 
@@ -116,7 +116,7 @@ export default function RegisterPage() {
           {/* Header */}
           <div className="text-center space-y-2">
             <h1 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight text-foreground">
-              Create Creator Account
+              User Registration
             </h1>
             <p className="text-xs sm:text-sm text-studio-600 dark:text-studio-400">
               Join StudioSpace to list creative stages or reserve shoot hours.
@@ -246,7 +246,7 @@ export default function RegisterPage() {
               disabled={submitting || googleLoading || !isPasswordValid}
               className="w-full py-3 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-studio-950 font-bold text-sm transition-all hover:shadow-glow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
-              <span>{submitting ? "Creating Account..." : "Register Account"}</span>
+              <span>{submitting ? "Creating Account..." : "Register"}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </form>
