@@ -17,9 +17,33 @@ const CATEGORIES = [
   "Art Workshop",
 ];
 
+const CATEGORY_ALIAS_MAP: Record<string, string> = {
+  "photo studio": "Photo Studio",
+  "photo studios": "Photo Studio",
+  "film stage": "Film Stage",
+  "sound stage": "Film Stage",
+  "sound stages": "Film Stage",
+  "soundstages": "Film Stage",
+  "podcast lounge": "Podcast Lounge",
+  "podcast room": "Podcast Lounge",
+  "podcast rooms": "Podcast Lounge",
+  "music suite": "Music Suite",
+  "music suites": "Music Suite",
+  "art workshop": "Art Workshop",
+  "art workshops": "Art Workshop",
+};
+
+function resolveCategory(cat: string | null): string {
+  if (!cat) return "All";
+  const normalized = cat.trim().toLowerCase();
+  if (CATEGORY_ALIAS_MAP[normalized]) return CATEGORY_ALIAS_MAP[normalized];
+  if (CATEGORIES.includes(cat)) return cat;
+  return "All";
+}
+
 function ExploreStudiosContent() {
   const searchParams = useSearchParams();
-  const initialCategory = searchParams.get("category") || "All";
+  const initialCategory = resolveCategory(searchParams.get("category"));
 
   const [studios, setStudios] = useState<IStudio[]>([]);
   const [loading, setLoading] = useState(true);
@@ -28,8 +52,8 @@ function ExploreStudiosContent() {
   const [sortBy, setSortBy] = useState("rating");
 
   useEffect(() => {
-    const cat = searchParams.get("category");
-    if (cat && CATEGORIES.includes(cat)) {
+    const cat = resolveCategory(searchParams.get("category"));
+    if (cat) {
       setSelectedCategory(cat);
     }
   }, [searchParams]);

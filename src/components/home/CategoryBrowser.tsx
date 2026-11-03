@@ -27,7 +27,7 @@ const CATEGORIES: CategoryItem[] = [
   },
   {
     id: "film",
-    name: "Cinema Soundstages",
+    name: "Sound Stages",
     tagline: "Heavy Camlock 3-phase power, acoustic NC-25 shells, ceiling grids",
     queryParam: "Film Stage",
     icon: Film,
@@ -38,7 +38,7 @@ const CATEGORIES: CategoryItem[] = [
   },
   {
     id: "podcast",
-    name: "Podcast Lounges",
+    name: "Podcast Rooms",
     tagline: "Multi-cam 4K switcher, Shure SM7B mics, acoustic felt tables",
     queryParam: "Podcast Lounge",
     icon: Mic,
@@ -80,7 +80,7 @@ export function CategoryBrowser() {
             Curated Spaces by Discipline
           </p>
           <h2 className="text-3xl sm:text-4xl font-display font-extrabold tracking-tight text-foreground">
-            Browse by Studio Discipline
+            Browse by Studio Categories
           </h2>
           <p className="mt-2 text-sm sm:text-base text-studio-600 dark:text-studio-400">
             From acoustic-isolated recording suites to expansive drive-in daylight stages, filter and reserve spaces tailored to your production workflow.
