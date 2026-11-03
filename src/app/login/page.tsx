@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "../../context/AuthContext";
 import { toast } from "sonner";
-import { Lock, Mail, ArrowRight, Sparkles, KeyRound } from "lucide-react";
+import { Lock, Mail, ArrowRight, Sparkles, KeyRound, Loader2 } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -16,7 +16,31 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const [formError, setFormError] = useState("");
+
+  // Automatically reset all loading flags when returning to this page (e.g., via browser Back button / bfcache or window focus)
+  useEffect(() => {
+    const resetLoadingStates = () => {
+      setSubmitting(false);
+      setGoogleLoading(false);
+    };
+
+    window.addEventListener("pageshow", resetLoadingStates);
+    window.addEventListener("focus", resetLoadingStates);
+    const handleVisibility = () => {
+      if (document.visibilityState === "visible") {
+        resetLoadingStates();
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    return () => {
+      window.removeEventListener("pageshow", resetLoadingStates);
+      window.removeEventListener("focus", resetLoadingStates);
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,10 +64,22 @@ export default function LoginPage() {
   };
 
   const handleGoogleLogin = async () => {
-    setSubmitting(true);
-    const success = await loginWithGoogle();
-    if (!success) {
-      setSubmitting(false);
+    setGoogleLoading(true);
+
+    // Safety fallback: if user returns or navigation is aborted, restore button after 5 seconds
+    const fallbackTimer = setTimeout(() => {
+      setGoogleLoading(false);
+    }, 5000);
+
+    try {
+      const success = await loginWithGoogle();
+      if (!success) {
+        clearTimeout(fallbackTimer);
+        setGoogleLoading(false);
+      }
+    } catch {
+      clearTimeout(fallbackTimer);
+      setGoogleLoading(false);
     }
   };
 
@@ -161,7 +197,7 @@ export default function LoginPage() {
 
             <button
               type="submit"
-              disabled={submitting}
+              disabled={submitting || googleLoading}
               className="w-full py-3 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-studio-950 font-bold text-sm transition-all hover:shadow-glow disabled:opacity-60 flex items-center justify-center gap-2"
             >
               <span>{submitting ? "Authenticating..." : "Sign In to StudioSpace"}</span>
@@ -182,28 +218,37 @@ export default function LoginPage() {
           <button
             type="button"
             onClick={handleGoogleLogin}
-            disabled={submitting}
-            className="w-full py-2.5 px-4 rounded-xl border border-studio-200 dark:border-studio-800 hover:border-amber-500/40 bg-studio-50 dark:bg-studio-950 text-studio-800 dark:text-studio-200 text-sm font-semibold flex items-center justify-center gap-3 transition-colors"
+            disabled={submitting || googleLoading}
+            className="w-full py-2.5 px-4 rounded-xl border border-studio-200 dark:border-studio-800 hover:border-amber-500/40 bg-studio-50 dark:bg-studio-950 text-studio-800 dark:text-studio-200 text-sm font-semibold flex items-center justify-center gap-3 transition-colors disabled:opacity-60"
           >
-            <svg className="w-4 h-4" viewBox="0 0 24 24">
-              <path
-                fill="#4285F4"
-                d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.65v3.05h3.9c2.28-2.1 3.64-5.18 3.64-9.14z"
-              />
-              <path
-                fill="#34A853"
-                d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.9-3.05c-1.08.72-2.45 1.16-4.03 1.16-3.1 0-5.74-2.09-6.68-4.91H1.21v3.15C3.25 21.4 7.33 24 12 24z"
-              />
-              <path
-                fill="#FBBC05"
-                d="M5.32 14.29c-.24-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.56H1.21C.44 8.09 0 9.98 0 12s.44 3.91 1.21 5.44l4.11-3.15z"
-              />
-              <path
-                fill="#EA4335"
-                d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.25 2.6 1.21 6.56l4.11 3.15c.94-2.82 3.58-4.96 6.68-4.96z"
-              />
-            </svg>
-            <span>Continue with Google</span>
+            {googleLoading ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin text-amber-500" />
+                <span>Connecting to Google...</span>
+              </>
+            ) : (
+              <>
+                <svg className="w-4 h-4" viewBox="0 0 24 24">
+                  <path
+                    fill="#4285F4"
+                    d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.65v3.05h3.9c2.28-2.1 3.64-5.18 3.64-9.14z"
+                  />
+                  <path
+                    fill="#34A853"
+                    d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.9-3.05c-1.08.72-2.45 1.16-4.03 1.16-3.1 0-5.74-2.09-6.68-4.91H1.21v3.15C3.25 21.4 7.33 24 12 24z"
+                  />
+                  <path
+                    fill="#FBBC05"
+                    d="M5.32 14.29c-.24-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.56H1.21C.44 8.09 0 9.98 0 12s.44 3.91 1.21 5.44l4.11-3.15z"
+                  />
+                  <path
+                    fill="#EA4335"
+                    d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.25 2.6 1.21 6.56l4.11 3.15c.94-2.82 3.58-4.96 6.68-4.96z"
+                  />
+                </svg>
+                <span>Continue with Google</span>
+              </>
+            )}
           </button>
 
           {/* Footer Link to Register */}
