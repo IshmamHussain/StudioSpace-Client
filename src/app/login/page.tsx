@@ -57,8 +57,12 @@ export default function LoginPage() {
     setSubmitting(false);
 
     if (success) {
-      if (redirectUrl.includes("my-bookings") || searchParams.get("from") === "booking") {
+      if (redirectUrl.includes("/studios/") || searchParams.get("from") === "booking") {
+        toast.success("Signed in successfully! Returning to your studio workspace...");
+      } else if (redirectUrl.includes("my-bookings")) {
         toast.success("Signed in successfully! Redirecting to your bookings section...");
+      } else {
+        toast.success("Signed in successfully!");
       }
       router.push(redirectUrl);
     } else {
@@ -258,7 +262,11 @@ export default function LoginPage() {
           <div className="text-center pt-2 text-xs text-studio-600 dark:text-studio-400">
             <span>Don't have an account yet? </span>
             <Link
-              href={redirectUrl !== "/" ? `/register?redirect=${encodeURIComponent(redirectUrl)}` : "/register"}
+              href={
+                redirectUrl !== "/"
+                  ? `/register?redirect=${encodeURIComponent(redirectUrl)}${searchParams.get("from") ? `&from=${encodeURIComponent(searchParams.get("from")!)}` : ""}`
+                  : `/register${searchParams.get("from") ? `?from=${encodeURIComponent(searchParams.get("from")!)}` : ""}`
+              }
               className="font-bold text-amber-500 hover:underline"
             >
               Register here

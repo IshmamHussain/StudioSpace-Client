@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import React, { useEffect, useState, useRef, Suspense } from "react";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { IStudio } from "@/types";
 import { api } from "@/lib/api";
@@ -23,9 +23,10 @@ import {
 import { useAuth } from "@/context/AuthContext";
 import { toast } from "sonner";
 
-export default function StudioDetailsPage() {
+function StudioDetailsContent() {
   const params = useParams();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const id = params?.id as string;
   const { isAuthenticated } = useAuth();
 
@@ -34,6 +35,19 @@ export default function StudioDetailsPage() {
   const [selectedImage, setSelectedImage] = useState<string>("");
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
+  const hasHandledBookingRedirect = useRef(false);
+
+  useEffect(() => {
+    if (
+      !hasHandledBookingRedirect.current &&
+      isAuthenticated &&
+      (searchParams.get("book") === "true" || searchParams.get("from") === "booking")
+    ) {
+      hasHandledBookingRedirect.current = true;
+      setBookingModalOpen(true);
+      toast.success("Welcome back! Ready to reserve your studio workspace.");
+    }
+  }, [isAuthenticated, searchParams]);
 
   useEffect(() => {
     async function fetchStudio() {
@@ -81,7 +95,7 @@ export default function StudioDetailsPage() {
   const handleBookWorkspace = () => {
     if (!isAuthenticated) {
       toast.info("Please sign in or create an account to reserve this workspace.");
-      router.push(`/register?redirect=/my-bookings&from=booking`);
+      router.push(`/register?redirect=${encodeURIComponent(`/studios/${id}?book=true`)}&from=booking`);
       return;
     }
     setBookingModalOpen(true);
@@ -392,5 +406,20 @@ export default function StudioDetailsPage() {
         />
       </div>
     </div>
+  );
+}
+
+export default function StudioDetailsPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8 animate-pulse">
+          <div className="h-8 bg-studio-200 dark:bg-studio-800 rounded-lg w-1/3" />
+          <div className="aspect-[21/9] bg-studio-200 dark:bg-studio-800 rounded-3xl" />
+        </div>
+      }
+    >
+      <StudioDetailsContent />
+    </Suspense>
   );
 }

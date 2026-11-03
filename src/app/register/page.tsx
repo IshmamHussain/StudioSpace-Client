@@ -77,10 +77,12 @@ export default function RegisterPage() {
 
     if (success) {
       // On success, navigate to Login page (preserving target redirect)
+      const fromParam = searchParams.get("from");
+      const fromQuery = fromParam ? `&from=${encodeURIComponent(fromParam)}` : "";
       router.push(
         redirectUrl !== "/"
-          ? `/login?redirect=${encodeURIComponent(redirectUrl)}`
-          : "/login"
+          ? `/login?redirect=${encodeURIComponent(redirectUrl)}${fromQuery}`
+          : `/login${fromQuery ? `?${fromQuery.slice(1)}` : ""}`
       );
     } else {
       setFormError("Registration could not be completed. The email may already be in use.");
@@ -301,8 +303,8 @@ export default function RegisterPage() {
             <Link
               href={
                 redirectUrl !== "/"
-                  ? `/login?redirect=${encodeURIComponent(redirectUrl)}`
-                  : "/login"
+                  ? `/login?redirect=${encodeURIComponent(redirectUrl)}${searchParams.get("from") ? `&from=${encodeURIComponent(searchParams.get("from")!)}` : ""}`
+                  : `/login${searchParams.get("from") ? `?from=${encodeURIComponent(searchParams.get("from")!)}` : ""}`
               }
               className="font-bold text-amber-500 hover:underline"
             >
