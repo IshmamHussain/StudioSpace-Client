@@ -12,7 +12,10 @@ interface AuthContextType {
   isAuthenticated: boolean;
   login: (credentials: { email: string; password: string }) => Promise<boolean>;
   register: (data: { name: string; email: string; password: string; photoURL?: string }) => Promise<boolean>;
-  loginWithGoogle: (googleUser?: { name?: string; email?: string; photoURL?: string }) => Promise<boolean>;
+  loginWithGoogle: (
+    googleUser?: { name?: string; email?: string; photoURL?: string },
+    callbackPath?: string
+  ) => Promise<boolean>;
   logout: () => Promise<void>;
   refreshUser: () => Promise<void>;
 }
@@ -120,11 +123,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const loginWithGoogle = async (googleUser?: {
-    name?: string;
-    email?: string;
-    photoURL?: string;
-  }): Promise<boolean> => {
+  const loginWithGoogle = async (
+    googleUser?: {
+      name?: string;
+      email?: string;
+      photoURL?: string;
+    },
+    callbackPath?: string
+  ): Promise<boolean> => {
     try {
       setLoading(true);
 
@@ -144,10 +150,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
 
       // Initiate official BetterAuth Google OAuth 2.0 flow
-      const targetOrigin = typeof window !== "undefined" ? window.location.origin : "https://studio-space-rho.vercel.app";
+      const targetOrigin =
+        typeof window !== "undefined"
+          ? window.location.origin
+          : "https://studio-space-rho.vercel.app";
+      const cleanCallback =
+        callbackPath && callbackPath.startsWith("/")
+          ? callbackPath
+          : `/${callbackPath || ""}`;
+      const finalCallbackURL = `${targetOrigin}${cleanCallback === "/" ? "/" : cleanCallback}`;
+
       const res = await authClient.signIn.social({
         provider: "google",
-        callbackURL: `${targetOrigin}/`,
+        callbackURL: finalCallbackURL,
         errorCallbackURL: `${targetOrigin}/login?error=google_failed`,
       });
 

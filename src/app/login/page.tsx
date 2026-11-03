@@ -72,7 +72,7 @@ export default function LoginPage() {
     }, 5000);
 
     try {
-      const success = await loginWithGoogle();
+      const success = await loginWithGoogle(undefined, redirectUrl);
       if (!success) {
         clearTimeout(fallbackTimer);
         setGoogleLoading(false);
